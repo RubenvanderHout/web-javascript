@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "noEmit": true,
-    "target": "es2022", // or any other target you are using
-    "module": "es2022", // or your preferred module system
+    "target": "ES2022", // or any other target you are using
+    "module": "ES2022", // or your preferred module system
+    "moduleResolution": "Bundler",
     "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,

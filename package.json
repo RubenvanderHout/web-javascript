@@ -4,11 +4,14 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
+    "start": "http-server ./dist",
+    "build": "node build.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.11.0"
+    "esbuild": "0.20.2",
+    "http-server": "^14.1.1"
   }
 }

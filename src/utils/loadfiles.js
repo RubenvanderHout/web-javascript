@@ -9,7 +9,7 @@ async function loadFileData(filePath) {
         const data = await response.text();
         
         return data;
-
+        
     } catch (error) {
         console.error("Error occured loading file")
     }
