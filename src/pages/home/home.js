@@ -1,6 +1,4 @@
-// @ts-ignore
 import html from './home.html';
-// @ts-ignore
 import css from './home.css';
 
 const template = document.createElement('template');

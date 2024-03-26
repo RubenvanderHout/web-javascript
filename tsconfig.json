@@ -12,7 +12,7 @@
     "allowJs": true, // allow JavaScript files to be included
     "checkJs": true // check JavaScript files for errors
   },
-  "include": ["src/**/*"], // adjust the path according to your project structure
+  "include": ["src/**/*", "global.d.ts"], // adjust the path according to your project structure
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
   
