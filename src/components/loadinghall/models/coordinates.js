@@ -1,4 +1,4 @@
-class coordinates {
+class Coordinates {
 
      /**
      * Constructs a new coordinates.
@@ -8,5 +8,9 @@ class coordinates {
     constructor(x, y){
         this.x = x;
         this.y = y;
+    }
+
+    test() {
+        console.log("todo")
     }
 }
