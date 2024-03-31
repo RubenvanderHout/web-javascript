@@ -1,21 +1,25 @@
-import LoadingHall from "./loadingHall";
+import LoadingHall from "./loadingHall.js";
 
-/**
- * LoadingHall 
- * @element hall-component
- * @attr {String} [color=#ff0000] - The color of the element.
- * @attr {Number} [size=12] - The size of the element.
-
- */
 class LoadingHallComponent extends HTMLElement {
     
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
-        this.render(this.shadow)
+        
+        const id = this.getAttribute("id");
 
-        const resolution = Number(this.getAttribute("resolution")) || 100;
-        const size = { width: resolution, height: resolution };
+        this.render(this.shadow, id)
+
+        const addBeltButton = this.shadow.getElementById("addBelt");
+        addBeltButton.addEventListener("click", () => { this.addBelt(addBeltButton) });
+
+        const toggleSimulationButton = this.shadow.getElementById("toggleSimulation");
+        toggleSimulationButton.addEventListener("click", () => { this.toggleSimulation() })
+
+        const componentWidth = Number(this.getAttribute("component-width")) || 900;
+        const componentHeight = Number(this.getAttribute("component-height")) || 700;
+        const size = { width: componentWidth, height: componentHeight };
+        /** @type {HTMLCanvasElement} */
         const canvas = this.shadow.querySelector("#canvas");
 
         this.loadingHall = new LoadingHall(canvas, size);
@@ -25,40 +29,70 @@ class LoadingHallComponent extends HTMLElement {
     /**
      * Render html
      * @param {ShadowRoot} shadow - Shadowroot
+     * @param {String} id - Id of the assignnent hall
      */
-    render(shadow) {
+    render(shadow, id) {
         shadow.innerHTML = `
+        <h2>Loading hall ${id} </h2>
+        <button id="addBelt"> Add conveyor belt </button>
+        <button id="toggleSimulation"> Toggle simulation </button>
         <canvas id="canvas"></canvas>
 
         <style>
             .canvas {
                 grid-row: 1;
+                height: 100%;
                 width: 100%;
                 aspect-ratio: 1 / 1;
                 border: 0.25rem solid #eeeeee;
                 border-radius: 0.25rem;
                 cursor: crosshair;
                 }
+            :host {
+                display: flex;
+                flex-direction: column;
+            }
         </style>
         `;
     }
 
-    start() {
-        // Start the loading process
-        this.loadingHall.start();
+
+    set width(width) {
+        this.setAttribute("component-width", width)
     }
 
-    stop() {
-        // Stop the loading process
-        this.loadingHall.stop();
+    set height(height) {
+        this.setAttribute("component-height", height)
     }
 
-    addBelt(){
-        this.loadingHall.addBelt();
+    addBelt(target){
+        const maxBelts = this.loadingHall.getMaxBelts();
+        let currentBelts  = this.loadingHall.getAmountOfBelts();
+
+        if(currentBelts < maxBelts){
+            this.loadingHall.addBelt();
+            currentBelts++;
+        }
+        
+        if(currentBelts === maxBelts){
+            target.remove();
+        }
     }
 
-    set setWeatherData(data) {
+    setWeatherData(data) {
         this.loadingHall.setWeatherData(data);
+    }
+
+    toggleSimulation(){
+        if(this.loadingHall.isRunning){
+            this.loadingHall.stop();
+        } else {
+            this.loadingHall.start();
+        }
+    }
+
+    addTruck(truck){
+        this.loadingHall.addTruck(truck);
     }
 
 }

@@ -3,7 +3,7 @@
     "noEmit": true,
     "target": "ES2022", // or any other target you are using
     "module": "ES2022", // or your preferred module system
-    "moduleResolution": "Bundler",
+    "moduleResolution": "Classic",
     "strict": false,
     "strictPropertyInitialization": false,
     "esModuleInterop": true,

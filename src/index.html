@@ -17,6 +17,35 @@
 
             <section>
                 <div>
+                    <h2>Set Location</h2>
+
+                    <form id="getLocation">
+                        <div>
+                            <label for="city">CityName</label>
+                            <input type="text" name="city">
+                            <button type="submit" name="truck-submit">Submit</button>
+                        </div>
+                    </form>
+
+                    <h3>Debug</h3>
+
+                    <button id="hotButton">Hot</button>
+                    <button id="windButton">Wind</button>
+                    <button id="precipitationButton">Rain or Snow</button>
+                </div>
+
+
+
+                <h2>Switch loading halls</h2>
+                
+                <div class="links">
+                    <a id="link-1">Loading Hall 1</a>
+                    <a id="link-2">Loading Hall 2</a>
+                </div>
+                
+               
+
+                <div>
                     <form id="createTruck">
                         <h2>Create a new truck</h2>
                         
@@ -27,11 +56,11 @@
                             <label for="width">Truck Width:</label>
                             <input type="number" name="width">
                         
-                            <label for="interval">Truck interval:</label>
+                            <label for="interval">Truck interval (seconds):</label>
                             <input type="number" name="interval">
                         
                             <label for="type">Truck type</label>
-                            <select name="type">
+                            <select name="truckType">
                                 <option value="Koud transport">Koud transport</option>
                                 <option value="Breekbaar transport">Breekbaar transport</option>
                                 <option value="Algemeen transport">Algemeen transport</option>
@@ -40,25 +69,17 @@
                             </select>
                         </div>
             
-                        <button type="button" name="truck-submit">Submit</button>
+                        <button type="submit" name="truck-submit">Submit</button>
                     </form>
                 </div>
                 
-                <h2>Switch loading halls</h2>
-                
-                <div class="links">
-                    <a>Loading Hall 1</a>
-                    <a>Loading Hall 2</a>
-                </div>
-                
-                <h2>Loading halls</h2>
-                
+              
                 <div id="halls" class="halls">
-                    <hall-component id="1"></hall-component>
-                    <hall-component id="2"></hall-component>
+                    <hall-component id="hall-1"></hall-component>
+                    <hall-component class="hide" id="hall-2"></hall-component>
                 </div>
             </section>
-        </div>     
+        </div>
     </body>
 
 </html>

@@ -11,6 +11,6 @@ class Coordinates {
     }
 
     test() {
-        console.log("todo")
+        
     }
 }

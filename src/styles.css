@@ -1,7 +1,3 @@
-h1 {
-    color: red;
-}
-
 body {
     background-color: azure;
     margin: 0;
@@ -44,9 +40,15 @@ form {
 .halls {
     display: flex;
     flex-direction: column;
+    height: fit-content;
+    width: fit-content;
 }
 
 .halls hall-component {
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
+.hide {
+    display: none;
+}

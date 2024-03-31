@@ -1,12 +1,12 @@
 class WeatherData {
     static WEATHER_API_URL = "https://api.open-meteo.com/v1/forecast" 
-    static WEATHER_API_PART = "&current=temperature_2m,rain,snowfall"
+    static WEATHER_API_PART = "&current=temperature_2m,precipitation"
     static GEOCODING_API_URL = "https://geocoding-api.open-meteo.com/v1/search"
 }
 
-async function getForcast(longitude, latitude) {
-    if (typeof longitude !== 'string' && typeof latitude !== 'string' ){
-        throw new Error("Only accept string for longitude and latitude");
+export async function getForcast(longitude, latitude) {
+    if (typeof longitude !== 'number' && typeof latitude !== 'number' ){
+        throw new Error("Only accept number for longitude and latitude");
     }
 
     let url = WeatherData.WEATHER_API_URL;
@@ -21,7 +21,7 @@ async function getForcast(longitude, latitude) {
     }
 }   
 
-async function searchLocation(cityName) {
+export async function searchLocation(cityName) {
     if (typeof cityName !== 'string'){
         throw new Error("Only accept string for cityname");
     }
