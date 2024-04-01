@@ -1,4 +1,4 @@
-import Truck from "./truck.js"
+import Truck from "./truckData.js"
 
 const TRUCK_MAX_WIDTH = 8;
 const TRUCK_MAX_LENGTH = 8;

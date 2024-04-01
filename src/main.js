@@ -7,6 +7,7 @@ import Hall from  "./modules/hall.js"
 
 // Forcast 
 let forcast = null 
+
 // Halls
 
 const hallElements = document.getElementsByTagName("hall-component");

@@ -4,26 +4,30 @@ class LoadingHallComponent extends HTMLElement {
     
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
         
         const id = this.getAttribute("id");
 
-        this.render(this.shadow, id)
+        this.render(this.shadowRoot, id)
 
-        const addBeltButton = this.shadow.getElementById("addBelt");
+        const addBeltButton = this.shadowRoot.getElementById("addBelt");
         addBeltButton.addEventListener("click", () => { this.addBelt(addBeltButton) });
 
-        const toggleSimulationButton = this.shadow.getElementById("toggleSimulation");
+        const toggleSimulationButton = this.shadowRoot.getElementById("toggleSimulation");
         toggleSimulationButton.addEventListener("click", () => { this.toggleSimulation() })
 
-        const componentWidth = Number(this.getAttribute("component-width")) || 900;
-        const componentHeight = Number(this.getAttribute("component-height")) || 700;
-        const size = { width: componentWidth, height: componentHeight };
-        /** @type {HTMLCanvasElement} */
-        const canvas = this.shadow.querySelector("#canvas");
+        const generateBlockButton = this.shadowRoot.getElementById("generateBlock");
+        generateBlockButton.addEventListener("click", () => { this.generateBlock() })
 
-        this.loadingHall = new LoadingHall(canvas, size);
-        this.loadingHall.start();
+        let canvasContainerWidth = Number(this.getAttribute("component-width")) || 900;
+        let canvasContainerHeight = Number(this.getAttribute("component-height")) || 900;
+        
+        const size = { width: canvasContainerWidth, height: canvasContainerHeight };
+        /** @type {HTMLCanvasElement} */
+        const canvasContainer = this.shadowRoot.querySelector("#canvasContainer");
+
+
+        this.loadingHall = new LoadingHall(canvasContainer, size);
     }
 
     /**
@@ -33,21 +37,32 @@ class LoadingHallComponent extends HTMLElement {
      */
     render(shadow, id) {
         shadow.innerHTML = `
-        <h2>Loading hall ${id} </h2>
+        <h2> ${id} </h2>
         <button id="addBelt"> Add conveyor belt </button>
         <button id="toggleSimulation"> Toggle simulation </button>
-        <canvas id="canvas"></canvas>
+        <button id="generateBlock"> Generate Block </button>
 
+        <div class="canvasContainer" id="canvasContainer">
+            <div id="beltContainer">
+            </div>
+
+            <div class="canvas-small" id="truckContainer">
+            </div>
+        </div>
+        
         <style>
-            .canvas {
+
+            .canvasContainer {
+                display: flex;
+                width: 900px;
+            }
+
+            canvas {
                 grid-row: 1;
-                height: 100%;
-                width: 100%;
                 aspect-ratio: 1 / 1;
                 border: 0.25rem solid #eeeeee;
                 border-radius: 0.25rem;
-                cursor: crosshair;
-                }
+            }
             :host {
                 display: flex;
                 flex-direction: column;
@@ -64,6 +79,11 @@ class LoadingHallComponent extends HTMLElement {
     set height(height) {
         this.setAttribute("component-height", height)
     }
+
+    generateBlock(){
+        this.loadingHall.generateBlock()
+    }
+
 
     addBelt(target){
         const maxBelts = this.loadingHall.getMaxBelts();
