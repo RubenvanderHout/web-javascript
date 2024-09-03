@@ -1,0 +1,54 @@
+body {
+    background-color: azure;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0, auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+div {
+    padding-bottom: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 12rem;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+.links a {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  
+}
+  
+.links a:hover {
+    color: purple;
+}
+
+.halls {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+}
+
+.halls hall-component {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.hide {
+    display: none;
+}
