@@ -1,0 +1,84 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    color: #444;
+    background-color: #EEE;
+    margin: 40px auto;
+    max-width: 650px;
+    line-height: 1.6em;
+    padding: 0;
+    -webkit-font-smoothing: antialiased; /* Smooth fonts in WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Smooth fonts in Firefox */
+}
+
+
+
+/* Basic Elements */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.17em;
+}
+
+p {
+    margin: 0 0 1em;
+}
+
+ul, ol {
+    list-style: none; /* Remove list styles */
+}
+
+a {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit color from parent */
+}
+
+img {
+    max-width: 100%; /* Responsive images */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Additional Defaults */
+button {
+    font-family: inherit; /* Use inherited font for buttons */
+    font-size: inherit; /* Use inherited font size */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+input, textarea {
+    font-family: inherit; /* Use inherited font for inputs and textareas */
+    font-size: inherit; /* Use inherited font size */
+    line-height: inherit; /* Use inherited line height */
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    html {
+        font-size: 93.75%; /* ~15px */
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 87.5%; /* ~14px */
+    }
+}

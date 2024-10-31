@@ -1,32 +1,29 @@
-import { createObservable } from "./utils/utils.js";
+import { MixingHallPage } from "./pages/MixingHall.js";
+import { NavigationComponent } from "./components/Navigation.js";
+import { ColorTestPage } from "./pages/ColorTest.js";
 
-export function App() {
-    const appElement = document.createElement("div");
+export function App(rootElement) {
+    rootElement.innerHTML = `
+        <h1>Future Colors Color simulator</h1>
 
-    document.body.innerHTML = `
-        <div>
-            <p>
-            Count:
-            <span data-bind="count"></span>
-            </p>
-            <button id="increment">Increment</button>
-            <button id="decrement">Decrement</button>
-        </div>
+        <nav></nav>
+
+        <main>
+            <mixing-hall id="mixing-hall-1"></mixing-hall>
+            <mixing-hall id="mixing-hall-2"></mixing-hall>
+            <color-test></color-test>
+        </main>
     `;
+    // Declare elements
+    const navigationElement = document.querySelector("nav");
+    const colorTestElement = document.querySelector('color-test');
 
-    const countObservable = createObservable(0);
-    countObservable.bindToElements("count", "textContent");
+    const mixingHallElement1 = document.getElementById('mixing-hall-1');
+    const mixingHallElement2 = document.getElementById('mixing-hall-2');
 
-    const buttonIncrement = document.getElementById("increment");
-    const buttonDecrement = document.getElementById("decrement");
-
-    buttonIncrement.addEventListener("click", () => {
-        countObservable.setValue(countObservable.getValue() + 1);
-    });
-
-    buttonDecrement.addEventListener("click", () => {
-        countObservable.setValue(countObservable.getValue() - 1);
-    });
-
-    return appElement;
+    // Render Components
+    NavigationComponent(navigationElement);
+    MixingHallPage(mixingHallElement1);
+    MixingHallPage(mixingHallElement2);
+    ColorTestPage(colorTestElement)
 }
