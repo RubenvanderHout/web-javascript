@@ -1,6 +1,7 @@
 import { MixingHallPage } from "./pages/MixingHall.js";
 import { NavigationComponent } from "./components/Navigation.js";
 import { ColorTestPage } from "./pages/ColorTest.js";
+import { createComponent } from "./utils/utils.js";
 
 export function App(rootElement) {
     rootElement.innerHTML = `
@@ -14,16 +15,9 @@ export function App(rootElement) {
             <color-test></color-test>
         </main>
     `;
-    // Declare elements
-    const navigationElement = document.querySelector("nav");
-    const colorTestElement = document.querySelector('color-test');
-
-    const mixingHallElement1 = document.getElementById('mixing-hall-1');
-    const mixingHallElement2 = document.getElementById('mixing-hall-2');
-
-    // Render Components
-    NavigationComponent(navigationElement);
-    MixingHallPage(mixingHallElement1);
-    MixingHallPage(mixingHallElement2);
-    ColorTestPage(colorTestElement)
+    // Use the createComponent function to render components
+    createComponent(NavigationComponent, document.querySelector("nav"));
+    createComponent(MixingHallPage, document.getElementById('mixing-hall-1'));
+    createComponent(MixingHallPage, document.getElementById('mixing-hall-2'));
+    createComponent(ColorTestPage, document.querySelector('color-test'));
 }

@@ -1,3 +1,12 @@
+/**
+ * A helper function to create and render a component
+ * @param {Function} componentFn - The component function to render
+ * @param {Element} refElement - The element to render the component into
+ */
+export function createComponent(componentFn, refElement) {
+    componentFn(refElement);
+}
+
 export function createObservable(initialValue) {
     let value = initialValue;
     let listeners = [];
