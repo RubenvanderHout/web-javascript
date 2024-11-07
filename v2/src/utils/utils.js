@@ -4,7 +4,12 @@
  * @param {Element} refElement - The element to render the component into
  */
 export function createComponent(componentFn, refElement) {
-    componentFn(refElement);
+    if(refElement){
+        const component = componentFn();
+        refElement.replaceWith(component);
+    } else {
+        console.warn(`Could not render component: ${componentFn.name} on element ${refElement.tagName}`);
+    }
 }
 
 export function createObservable(initialValue) {

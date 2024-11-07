@@ -81,3 +81,18 @@ input, textarea {
         font-size: 87.5%; /* ~14px */
     }
 }
+
+.rectangle {
+    height: 500px;
+    width: 500px;
+    background-color: #555;
+    margin-top: 100px;
+}
+
+.dot {
+  height: 50px;
+  width: 50px;
+  background-color: yellow;
+  border-radius: 50%;
+  display: inline-block;
+}
