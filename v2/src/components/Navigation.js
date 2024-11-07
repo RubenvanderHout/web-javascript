@@ -2,11 +2,11 @@
  * @param {Element} refElement
  */
 export function NavigationComponent(refElement) {
-    refElement.innerHTML = `
+    const html = `
         <h1>Hello world!</h1>
     `;
-    // Do stuff
+    const range = document.createRange();
+    const fragment = range.createContextualFragment(html);
 
-
-
+    return fragment;
 }

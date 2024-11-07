@@ -1,10 +1,11 @@
 import { createObservable } from "../utils/utils.js";
 
-/**
- * @param {Element} refElement
- */
-export function ColorTestPage(refElement) {
-    refElement.innerHTML = `
+export function ColorTestPage() {
+    const html = `
         <h1>Hello world!</h1>
     `;
+    const range = document.createRange();
+    const fragment = range.createContextualFragment(html);
+
+    return fragment;
 }
