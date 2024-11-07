@@ -1,3 +1,5 @@
+// explaination of the formulas in this file: https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL
+
 export function getTriadicColors(hslColor) {
     // Extract the HSL components from the input string
     const [h, s, l] = hslColor.match(/\d+/g).map(Number);
@@ -16,14 +18,13 @@ export function mixCMYK(cmykArray, index = 0, totals = [0, 0, 0, 0]) {
         return totals.map(total => total / count); // Average each component
     }
 
-    // Accumulate the current CMYK values
     const [c, m, y, k] = cmykArray[index];
-    totals[0] += c; // Add cyan
-    totals[1] += m; // Add magenta
-    totals[2] += y; // Add yellow
-    totals[3] += k; // Add black
+    totals[0] += c; 
+    totals[1] += m; 
+    totals[2] += y; 
+    totals[3] += k; 
 
-    // Recursive call for the next index
+    // Recursion: Add the current CMYK values to the totals and move to the next
     return mixCMYK(cmykArray, index + 1, totals);
 }
 
@@ -45,23 +46,15 @@ function HSLToRGB(h, s, l) {
     let r, g, b;
 
     if (s === 0) {
-        r = g = b = l; // achromatic
+        r = g = b = l; // achromatic (grey)
     } else {
-        const hue2rgb = (p, q, t) => {
-            if (t < 0) t += 1;
-            if (t > 1) t -= 1;
-            if (t < 1/6) return p + (q - p) * 6 * t;
-            if (t < 1/3) return q;
-            if (t < 1/2) return p + (q - p) * (2/3 - t) * 6;
-            return p;
-        }
 
-        let q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        let q = l < 0.5 ? l * (1 + s) : l + s - l * s; // determine how to calculate the saturation based on lightness
         let p = 2 * l - q;
 
-        r = hue2rgb(p, q, h + 1/3);
-        g = hue2rgb(p, q, h);
-        b = hue2rgb(p, q, h - 1/3);
+        r = HueToRGB(p, q, h + 1/3);
+        g = HueToRGB(p, q, h);
+        b = HueToRGB(p, q, h - 1/3);
     }
 
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
@@ -113,4 +106,14 @@ function CMYKToRGB(c, m, y, k) {
     let b = 255 * (1 - y) * (1 - k);
 
     return [Math.round(r), Math.round(g), Math.round(b)];
+}
+
+ 
+function HueToRGB(s, l, h){
+    if (h < 0) h += 1;
+    if (h > 1) h -= 1;
+    if (h < 1/6) return s + (l - s) * 6 * h;
+    if (h < 1/3) return l;
+    if (h < 1/2) return s + (l - s) * (2/3 - h) * 6;
+    return s;
 }
