@@ -3,7 +3,7 @@ import { createObservable } from "../utils/utils.js";
 export function DropableComponent() {
 
     const html = `
-    <div class="droppable rectangle" >
+        <div class="droppable rectangle">
 
         </div>
 

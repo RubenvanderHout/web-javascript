@@ -17,20 +17,18 @@ export function App(rootElement) {
                 <mixing-hall id="mixing-hall-1"></mixing-hall>
                 <mixing-hall id="mixing-hall-2"></mixing-hall>
                 <color-test></color-test>
+                <dropable id="dropable-1"></dropable>
+
             </div>
 
             <div style="height: 100vh; background: hsl(150deg 30% 60%);">
                 <ingredient-list></ingredient-list>
+
+                <dragable id="dragable-1"></dragable>
+                <dragable id="dragable-2"></dragable>
+                <dragable id="dragable-3"></dragable>
             </div>
 
-            <div id="dropable-1">
-
-            </div>
-
-            <div id="dragable-1"></div>
-            <h1>Hello world!</h1>
-            <div id="dragable-2"></div>
-            <div id="dragable-3"></div>
         </main>
     `;
     // Use the createComponent function to render components
