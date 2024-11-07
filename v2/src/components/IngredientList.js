@@ -1,6 +1,11 @@
 import { createObservable } from "../utils/utils.js";
 
-export function IngredientListComponent() {
-
+/**
+ * @param {Element} refElement
+ */
+export function IngredientListComponent(refElement) {
+     refElement.innerHTML = `
+        <h1>Ingredient List!</h1>
+    `;
 
 }
