@@ -11,7 +11,7 @@ export function App(rootElement) {
         <nav></nav>
 
         <main style="display: grid; grid-template-columns: 90vw 10vw;">
-            <div style="height: 100vh; background: hsl(0 80% 50% / 25%);">
+            <div style="height: 90vh; background: hsl(0 80% 50% / 25%);">
                 <mixing-hall id="mixing-hall-1"></mixing-hall>
                 <mixing-hall id="mixing-hall-2"></mixing-hall>
                 <color-test></color-test>
@@ -19,7 +19,7 @@ export function App(rootElement) {
 
             </div>
 
-            <div style="height: 100vh; background: hsl(150deg 30% 60%);">
+            <div style="height: 90vh; background: hsl(150deg 30% 60%);">
                 <ingredient-list></ingredient-list>
 
                 <dragable id="dragable-1"></dragable>
