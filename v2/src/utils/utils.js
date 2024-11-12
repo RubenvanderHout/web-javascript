@@ -7,6 +7,7 @@ export function createComponent(componentFn, refElement) {
     if(refElement){
         const component = componentFn();
         refElement.replaceWith(component);
+        return component;
     } else {
         console.warn(`Could not render component: ${componentFn.name} on element ${refElement.tagName}`);
     }

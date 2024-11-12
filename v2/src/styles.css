@@ -106,3 +106,7 @@ input, textarea {
     margin-right: 20px; /* adds spacing between each list item */
   }
   
+.page-container {
+    height: 90vh; 
+    background: hsl(0 80% 50% / 25%);
+}

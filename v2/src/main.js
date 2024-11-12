@@ -1,5 +1,6 @@
 import { App } from './App.js';
 import { Router } from './Router.js';
+import { PopulateNavigation } from './components/Navigation.js';
 
 // Create a global object that stores routing and state
 // @ts-ignore
@@ -10,5 +11,5 @@ application.store = Router;
 App(document.body);
 
 window.addEventListener('DOMContentLoaded', async () => {
-
+    PopulateNavigation();
 });
