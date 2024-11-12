@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { generateRandomCode } from "../utils/utils.js";
+import { generateRandomId } from "../utils/utils.js";
 
 export function IngredientComponent() {
 
-  const randomCode = generateRandomCode(20);
+  const randomCode = generateRandomId();
 
   const html = `
     <div class="dot" id="${randomCode}" draggable="true"></div>
@@ -22,8 +22,6 @@ export function IngredientComponent() {
   dot.addEventListener('dragend', (event) => {
     dot.style.setProperty('opacity', '1');
   });
-
-
 
   return fragment;
 }
