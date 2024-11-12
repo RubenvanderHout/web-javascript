@@ -1,7 +1,61 @@
 // @ts-nocheck
 import { generateRandomId } from "../utils/utils.js";
 
-export function IngredientComponent() {
+/**
+ * @typedef {'grain'|'coarse'|'grain'|'smooth'|'slimy'} Texture
+*/
+
+/**
+ * @typedef {Object} IngredientProps
+ * @property {number} mixingTime The time to mix the ingredient in miliseconds.
+ * @property {number} mixingSpeed The speed to mix the ingredient in miliseconds.
+ * @property {string} color The color of the ingredient.
+ * @property {Texture} texture The texture of the ingredient.
+ * @type {IngredientProps}
+ */
+
+/**
+ * @param {IngredientProps} ingredientProps
+ * @returns {IngredientProps}
+*/
+export function IngredientComponent(IngredientProps) {
+  /**
+   * @param {IngredientProps} ingredientProps
+   * @returns {IngredientProps}
+   */
+  function validateProps(ingredientProps) {
+    const validTextures = ['grain', 'coarse', 'grain', 'smooth', 'slimy'];
+    const errors = [];
+
+    if (typeof ingredientProps !== 'object') {
+      errors.push('The ingredient properties must be an object');
+    }
+    if (typeof ingredientProps.mixingTime !== 'number') {
+      errors.push('The mixing time must be a number');
+    }
+    if (typeof ingredientProps.mixingSpeed !== 'number') {
+      errors.push('The mixing speed must be a number');
+    }
+
+    if (typeof ingredientProps.color !== 'string') {
+      errors.push('The color must be a string');
+    }
+
+    if (typeof ingredientProps.texture !== 'string') {
+      errors.push('The texture must be a string');
+    }
+
+    if (!validTextures.includes(ingredientProps.texture)) {
+      errors.push(`The texture must be one of the following: ${validTextures.join(', ')}`);
+    }
+
+    if (errors.length > 0) {
+      throw new Error(errors.join(', '));
+    }
+
+    return ingredientProps;
+  }
+  validateProps(ingredientProps);
 
   const randomCode = generateRandomId();
 

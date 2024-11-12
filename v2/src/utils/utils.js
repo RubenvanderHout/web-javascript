@@ -2,14 +2,16 @@
  * A helper function to create and render a component
  * @param {Function} componentFn - The component function to render
  * @param {Element} refElement - The element to render the component into
+ * @param {Object} [props] - Optional properties to pass to the component function
  */
-export function createComponent(componentFn, refElement) {
-    if(refElement){
-        const component = componentFn();
+export function createComponent(componentFn, refElement, props) {
+    if (refElement) {
+        // Check if the componentFn accepts props, and pass them if so
+        const component = props ? componentFn(props) : componentFn();
         refElement.replaceWith(component);
         return component;
     } else {
-        console.warn(`Could not render component: ${componentFn.name} on element ${refElement.tagName}`);
+        console.warn(`Could not render component: ${componentFn.name} on element ${refElement ? refElement.tagName : 'null'}`);
     }
 }
 

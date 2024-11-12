@@ -6,7 +6,6 @@ export function DropableComponent() {
 
         </div>
     `;
-
     const range = document.createRange();
     const fragment = range.createContextualFragment(html);
 
