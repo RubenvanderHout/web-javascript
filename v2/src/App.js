@@ -3,8 +3,8 @@ import { NavigationComponent } from "./components/Navigation.js";
 import { ColorTestPage } from "./pages/ColorTest.js";
 import { createComponent } from "./utils/utils.js";
 import { IngredientListComponent } from "./components/IngredientList.js";
-import { DropableComponent } from "./components/dropable.js";
-import { DragableComponent } from "./components/dragable.js";
+import { DropableComponent } from "./components/Dropable.js";
+import { IngredientComponent } from "./components/Ingredient.js";
 
 export function App(rootElement) {
     rootElement.innerHTML = `
@@ -38,7 +38,7 @@ export function App(rootElement) {
 
     createComponent(DropableComponent, document.getElementById('dropable-1'));
 
-    createComponent(DragableComponent, document.getElementById('dragable-1'));
-    createComponent(DragableComponent, document.getElementById('dragable-2'));
-    createComponent(DragableComponent, document.getElementById('dragable-3'));
+    createComponent(IngredientComponent, document.getElementById('dragable-1'));
+    createComponent(IngredientComponent, document.getElementById('dragable-2'));
+    createComponent(IngredientComponent, document.getElementById('dragable-3'));
 }

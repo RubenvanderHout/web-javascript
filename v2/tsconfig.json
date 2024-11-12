@@ -5,6 +5,7 @@
     "module": "ES2022", // or your preferred module system
     "moduleResolution": "Classic",
     "strict": false,
+    "strictNullChecks": false,
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -16,4 +17,3 @@
   "include": ["src/**/*", "global.d.ts"], // adjust the path according to your project structure
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
-  
