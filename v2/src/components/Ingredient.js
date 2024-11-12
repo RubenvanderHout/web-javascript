@@ -18,7 +18,8 @@ import { generateRandomId } from "../utils/utils.js";
  * @param {IngredientProps} ingredientProps
  * @returns {IngredientProps}
 */
-export function IngredientComponent(IngredientProps) {
+
+export function IngredientComponent(ingredientProps) {
   /**
    * @param {IngredientProps} ingredientProps
    * @returns {IngredientProps}
