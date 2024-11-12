@@ -8,8 +8,6 @@ import { DragableComponent } from "./components/dragable.js";
 
 export function App(rootElement) {
     rootElement.innerHTML = `
-        <h1>Future Colors Color simulator</h1>
-
         <nav></nav>
 
         <main style="display: grid; grid-template-columns: 90vw 10vw;">
