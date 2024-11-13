@@ -4,7 +4,7 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "http-server -c-1 ./src"
+    "start": "serve -s ./src"
   },
   "keywords": [],
   "author": "",

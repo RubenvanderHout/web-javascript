@@ -2,7 +2,7 @@ import { createObservable } from "../utils/utils.js";
 
 export function ColorTestPage() {
     const html = `
-        <div page-type="Color Test" style="display: none">
+        <div page-type="Color Test" >
             <h1>Color Test!</h1>
         </div>
     `;

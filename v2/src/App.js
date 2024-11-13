@@ -6,16 +6,12 @@ import { IngredientListComponent } from "./components/IngredientList.js";
 import { DropableComponent } from "./components/Dropable.js";
 import { IngredientComponent } from "./components/Ingredient.js";
 
-export function App(rootElement) {
-  rootElement.innerHTML = `
+export function App() {
+  const html = `
         <nav></nav>
 
         <main style="display: grid; grid-template-columns: 90vw 10vw;">
-            <div class="page-container">
-                <mixing-hall id="mixing-hall-1"></mixing-hall>
-                <mixing-hall id="mixing-hall-2"></mixing-hall>
-                <color-test></color-test>
-                <dropable id="dropable-1"></dropable>
+            <div id="router-container" class="page-container">
 
             </div>
 
@@ -29,20 +25,26 @@ export function App(rootElement) {
 
         </main>
     `;
-  // Use the createComponent function to render components
-  createComponent(NavigationComponent, document.querySelector("nav"));
-  createComponent(MixingHallPage, document.getElementById("mixing-hall-1"));
-  createComponent(MixingHallPage, document.getElementById("mixing-hall-2"));
-  createComponent(ColorTestPage, document.querySelector("color-test"));
+  const range = document.createRange();
+  const fragment = range.createContextualFragment(html);
+
+  // // Use the createComponent function to render components
+  createComponent(NavigationComponent, fragment.querySelector("nav"));
+  // createComponent(MixingHallPage, fragment.getElementById("mixing-hall-1"));
+  // createComponent(MixingHallPage, fragment.getElementById("mixing-hall-2"));
+  // createComponent(ColorTestPage, fragment.querySelector("color-test"));
 
   createComponent(
     IngredientListComponent,
-    document.querySelector("ingredient-list")
+    fragment.querySelector("ingredient-list")
   );
 
-  createComponent(DropableComponent, document.getElementById("dropable-1"));
+  // createComponent(DropableComponent, fragment.getElementById("dropable-1"));
 
-  createComponent(IngredientComponent, document.getElementById("dragable-1"));
-  createComponent(IngredientComponent, document.getElementById("dragable-2"));
-  createComponent(IngredientComponent, document.getElementById("dragable-3"));
+  // createComponent(IngredientComponent, fragment.getElementById("dragable-1"));
+  // createComponent(IngredientComponent, fragment.getElementById("dragable-2"));
+  // createComponent(IngredientComponent, fragment.getElementById("dragable-3"));
+
+
+  return fragment
 }

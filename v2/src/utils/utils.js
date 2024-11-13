@@ -5,13 +5,18 @@
  * @param {Object} [props] - Optional properties to pass to the component function
  */
 export function createComponent(componentFn, refElement, props) {
-    if (refElement) {
+    if (!refElement) {
+        console.warn(`Could not render component: ${componentFn.name} on element ${refElement ? refElement.tagName : 'null'}`);
+        return;
+    }
+    try {
         // Check if the componentFn accepts props, and pass them if so
         const component = props ? componentFn(props) : componentFn();
         refElement.replaceWith(component);
         return component;
-    } else {
-        console.warn(`Could not render component: ${componentFn.name} on element ${refElement ? refElement.tagName : 'null'}`);
+    } catch (error) {
+        console.error(`Error rendering component: ${componentFn.name}`, error);
+        return null;
     }
 }
 
