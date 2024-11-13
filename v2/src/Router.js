@@ -8,6 +8,23 @@ export const routes = [
     { path: '/colortest', title: 'Color test', page: ColorTestPage, showInNavbar: true },
 ];
 
+let oldRoute = null;
+
+export function InitRoutes(){
+    const routerContainer = document.getElementById('router-container');
+    routes.forEach((route) => {
+        const id = route.path;
+        const fragment = route.page();
+        // Note this component structure is not ideal, it will only work if each page starts with an div
+        const firstdiv = fragment.querySelector('div')
+        // @ts-ignore
+        firstdiv.setAttribute('id', id);
+        // @ts-ignore
+        firstdiv.style.display = 'none';
+        routerContainer.appendChild(fragment);
+    });
+}
+
 
 export function Router() {
 
@@ -19,14 +36,15 @@ export function Router() {
         throw new Error("404 Page not found");
     }
 
-    let pageFragment;
-    try {
-        pageFragment = route.page();
-        // Swap the current page
-        const content = document.getElementById('router-container');
-        content.innerHTML = '';
-        content.appendChild(pageFragment);
+    if(oldRoute){
+        const oldElement = document.getElementById(oldRoute.path);
+        oldElement.style.display = 'none';
+    }
 
+    try {
+        const element = document.getElementById(route.path);
+        element.style.display = 'block';
+        oldRoute = route;
     } catch (error) {
         console.error(`Error rendering page: ${route.page.name}`, error);
     }

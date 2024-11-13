@@ -12,7 +12,10 @@ export function App() {
 
         <main style="display: grid; grid-template-columns: 90vw 10vw;">
             <div id="router-container" class="page-container">
-
+                <mixing-hall id="mixing-hall-1"></mixing-hall>
+                <mixing-hall id="mixing-hall-2"></mixing-hall>
+                <color-test></color-test>
+                <dropable id="dropable-1"></dropable>
             </div>
 
             <div style="height: 90vh; background: hsl(150deg 30% 60%);">
@@ -28,7 +31,7 @@ export function App() {
   const range = document.createRange();
   const fragment = range.createContextualFragment(html);
 
-  // // Use the createComponent function to render components
+  // Use the createComponent function to render components
   createComponent(NavigationComponent, fragment.querySelector("nav"));
   // createComponent(MixingHallPage, fragment.getElementById("mixing-hall-1"));
   // createComponent(MixingHallPage, fragment.getElementById("mixing-hall-2"));

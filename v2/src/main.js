@@ -1,5 +1,5 @@
 import { App } from './App.js';
-import { Router } from './Router.js';
+import { InitRoutes, Router } from './Router.js';
 import { PopulateNavigation } from './components/Navigation.js';
 import { createComponent } from './utils/utils.js';
 
@@ -16,6 +16,7 @@ try {
 
 // Here you can call functions that need to be loaded after js has build all the html of the app
 window.addEventListener('DOMContentLoaded', async () => {
+    InitRoutes();
     Router();
     // PopulateNavigation();
 });

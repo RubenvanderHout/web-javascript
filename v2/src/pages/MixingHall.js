@@ -2,6 +2,7 @@ export function MixingHallPage() {
     const html = `
         <div page-type="Mixing Hall" >
             <h1>Mixing Hall!</h1>
+            <input></input>
         </div>
     `;
     const range = document.createRange();
