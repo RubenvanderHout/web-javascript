@@ -1,6 +1,6 @@
 export function MixingHallPage() {
     const html = `
-        <div page-type="Mixing Hall" >
+        <div>
             <h1>Mixing Hall!</h1>
             <input></input>
         </div>

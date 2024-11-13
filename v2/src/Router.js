@@ -1,8 +1,9 @@
 import { MixingHallPage } from "./pages/MixingHall.js";
 import { ColorTestPage } from "./pages/ColorTest.js";
+import { DropableComponent } from "./components/Dropable.js";
 
 export const routes = [
-    { path: '/', title: 'Home', page: MixingHallPage, showInNavbar: true },
+    { path: '/', title: 'Home', page: DropableComponent, showInNavbar: true },
     { path: '/mixinghall/1', title: 'Mixing hall 1', page: MixingHallPage, showInNavbar: true },
     { path: '/mixinghall/2', title: 'Mixing hall 2', page: MixingHallPage, showInNavbar: true },
     { path: '/colortest', title: 'Color test', page: ColorTestPage, showInNavbar: true },

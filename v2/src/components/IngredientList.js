@@ -1,5 +1,3 @@
-import { createObservable } from "../utils/utils.js";
-
 /**
  * @param {Element} refElement
  */

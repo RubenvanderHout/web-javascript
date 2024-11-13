@@ -1,9 +1,6 @@
-import { MixingHallPage } from "./pages/MixingHall.js";
 import { NavigationComponent } from "./components/Navigation.js";
-import { ColorTestPage } from "./pages/ColorTest.js";
 import { createComponent } from "./utils/utils.js";
 import { IngredientListComponent } from "./components/IngredientList.js";
-import { DropableComponent } from "./components/Dropable.js";
 import { IngredientComponent } from "./components/Ingredient.js";
 
 export function App() {
@@ -33,21 +30,15 @@ export function App() {
 
   // Use the createComponent function to render components
   createComponent(NavigationComponent, fragment.querySelector("nav"));
-  // createComponent(MixingHallPage, fragment.getElementById("mixing-hall-1"));
-  // createComponent(MixingHallPage, fragment.getElementById("mixing-hall-2"));
-  // createComponent(ColorTestPage, fragment.querySelector("color-test"));
 
   createComponent(
     IngredientListComponent,
     fragment.querySelector("ingredient-list")
   );
 
-  // createComponent(DropableComponent, fragment.getElementById("dropable-1"));
-
-  // createComponent(IngredientComponent, fragment.getElementById("dragable-1"));
-  // createComponent(IngredientComponent, fragment.getElementById("dragable-2"));
-  // createComponent(IngredientComponent, fragment.getElementById("dragable-3"));
-
+  createComponent(IngredientComponent, fragment.getElementById("dragable-1"));
+  createComponent(IngredientComponent, fragment.getElementById("dragable-2"));
+  createComponent(IngredientComponent, fragment.getElementById("dragable-3"));
 
   return fragment
 }

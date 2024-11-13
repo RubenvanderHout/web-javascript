@@ -1,6 +1,5 @@
 import { App } from './App.js';
 import { InitRoutes, Router } from './Router.js';
-import { PopulateNavigation } from './components/Navigation.js';
 import { createComponent } from './utils/utils.js';
 
 // Create a global object that stores routing and state
@@ -18,5 +17,4 @@ try {
 window.addEventListener('DOMContentLoaded', async () => {
     InitRoutes();
     Router();
-    // PopulateNavigation();
 });
