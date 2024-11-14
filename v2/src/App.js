@@ -18,9 +18,6 @@ export function App() {
             <div style="height: 90vh; background: hsl(150deg 30% 60%);">
                 <ingredient-list></ingredient-list>
 
-                <dragable id="dragable-1"></dragable>
-                <dragable id="dragable-2"></dragable>
-                <dragable id="dragable-3"></dragable>
             </div>
 
         </main>
@@ -35,10 +32,6 @@ export function App() {
     IngredientListComponent,
     fragment.querySelector("ingredient-list")
   );
-
-  createComponent(IngredientComponent, fragment.getElementById("dragable-1"));
-  createComponent(IngredientComponent, fragment.getElementById("dragable-2"));
-  createComponent(IngredientComponent, fragment.getElementById("dragable-3"));
 
   return fragment
 }

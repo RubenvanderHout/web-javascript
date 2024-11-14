@@ -1,6 +1,6 @@
 export function ColorTestPage() {
     const html = `
-        <div Test" >
+        <div>
             <h1>Color Test!</h1>
         </div>
     `;

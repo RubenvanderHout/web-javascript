@@ -89,12 +89,8 @@ input, textarea {
     margin-top: 100px;
 }
 
-.dot {
-  height: 50px;
-  width: 50px;
-  background-color: yellow;
-  border-radius: 50%;
-  display: inline-block;
+.shape {
+    display: inline-block;
 }
 
 .horizontal-list {

@@ -40,7 +40,13 @@ function generateMixingSpeed() {
 }
 
 function generateShape() {
-    const shapes = ['square', 'circle', 'triangle', 'hexagon'];
-    const randomIndex = Math.floor(Math.random() * shapes.length);
-    return shapes[randomIndex];
+    const width = Math.floor(Math.random() * 80) + 20;
+    const height = Math.floor(Math.random() * 80) + 20;
+    const borderRadius = Math.floor(Math.random() * 80); // higher than 50 results in a circle or ellipse
+    const shape = `
+        width: ${width}px;
+        height: ${height}px;
+        border-radius: ${borderRadius}%;
+    `;
+    return shape;
 }

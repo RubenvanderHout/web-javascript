@@ -3,7 +3,7 @@ import { generateRandomId } from "../utils/utils.js";
 
 /**
  * @typedef {'grain'|'coarse'|'grain'|'smooth'|'slimy'} Texture
-*/
+ */
 
 /**
  * @typedef {Object} IngredientProps
@@ -17,21 +17,23 @@ import { generateRandomId } from "../utils/utils.js";
 /**
  * @param {IngredientProps} ingredientProps
  * @returns {IngredientProps}
-*/
+ */
 export function IngredientComponent(ingredientProps) {
-
+  console.log(ingredientProps);
   const randomCode = generateRandomId();
-  const validTextures = ['grain', 'coarse grain', 'smooth', 'slimy'];
+  const validTextures = ["grain", "coarse grain", "smooth", "slimy"];
 
   function validateProps(ingredientProps) {
     const errors = [];
 
     if (!validTextures.includes(ingredientProps.texture)) {
-      errors.push(`The texture must be one of the following: ${validTextures.join(', ')}`);
+      errors.push(
+        `The texture must be one of the following: ${validTextures.join(", ")}`
+      );
     }
 
     if (errors.length > 0) {
-      throw new Error(errors.join(', '));
+      throw new Error(errors.join(", "));
     }
 
     return ingredientProps;
@@ -39,21 +41,29 @@ export function IngredientComponent(ingredientProps) {
   validateProps(ingredientProps);
 
   const html = `
-    <div class="dot" id="${randomCode}" draggable="true"></div>
+    <div class="shape"
+      id="${randomCode}"
+      draggable="true" 
+      texture="${ingredientProps.texture}" 
+      mixingSpeed="${ingredientProps.mixingSpeed}"
+      mixingTime="${ingredientProps.mixingTime}" 
+      style="background-color: ${ingredientProps.color}; ${ingredientProps.shape}" 
+      color="${ingredientProps.color}">
+      </div>
   `;
   const range = document.createRange();
   const fragment = range.createContextualFragment(html);
-  const dot = fragment.querySelector('.dot');
+  const shape = fragment.querySelector(".shape");
 
-  dot.addEventListener('dragstart', (event) => {
-    dot.style.setProperty('opacity', '0.4');
-    event.dataTransfer.effectAllowed = 'move';
+  shape.addEventListener("dragstart", (event) => {
+    shape.style.setProperty("opacity", "0.4");
+    event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.clearData();
-    event.dataTransfer.setData('text/plain', event.target.id);
+    event.dataTransfer.setData("text/plain", event.target.id);
   });
 
-  dot.addEventListener('dragend', (event) => {
-    dot.style.setProperty('opacity', '1');
+  shape.addEventListener("dragend", (event) => {
+    shape.style.setProperty("opacity", "1");
   });
 
   return fragment;
