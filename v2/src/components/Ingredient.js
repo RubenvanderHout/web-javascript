@@ -25,26 +25,7 @@ export function IngredientComponent(ingredientProps) {
    * @returns {IngredientProps}
    */
   function validateProps(ingredientProps) {
-    const validTextures = ['grain', 'coarse', 'grain', 'smooth', 'slimy'];
     const errors = [];
-
-    if (typeof ingredientProps !== 'object') {
-      errors.push('The ingredient properties must be an object');
-    }
-    if (typeof ingredientProps.mixingTime !== 'number') {
-      errors.push('The mixing time must be a number');
-    }
-    if (typeof ingredientProps.mixingSpeed !== 'number') {
-      errors.push('The mixing speed must be a number');
-    }
-
-    if (typeof ingredientProps.color !== 'string') {
-      errors.push('The color must be a string');
-    }
-
-    if (typeof ingredientProps.texture !== 'string') {
-      errors.push('The texture must be a string');
-    }
 
     if (!validTextures.includes(ingredientProps.texture)) {
       errors.push(`The texture must be one of the following: ${validTextures.join(', ')}`);
@@ -59,6 +40,7 @@ export function IngredientComponent(ingredientProps) {
   validateProps(ingredientProps);
 
   const randomCode = generateRandomId();
+  const validTextures = ['grain', 'coarse grain', 'smooth', 'slimy'];
 
   const html = `
     <div class="dot" id="${randomCode}" draggable="true"></div>
