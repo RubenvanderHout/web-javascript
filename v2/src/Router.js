@@ -1,10 +1,8 @@
 import { MixingHallPage } from "./pages/MixingHall.js";
 import { ColorTestPage } from "./pages/ColorTest.js";
-import { DropableComponent } from "./components/Dropable.js";
 
 export const routes = [
-    { path: '/', title: 'Home', page: DropableComponent, showInNavbar: true },
-    { path: '/mixinghall/1', title: 'Mixing hall 1', page: MixingHallPage, showInNavbar: true },
+    { path: '/', title: 'Mixing hall 1', page: MixingHallPage, showInNavbar: true },
     { path: '/mixinghall/2', title: 'Mixing hall 2', page: MixingHallPage, showInNavbar: true },
     { path: '/colortest', title: 'Color test', page: ColorTestPage, showInNavbar: true },
 ];
@@ -16,13 +14,13 @@ export function InitRoutes(){
     routes.forEach((route) => {
         const id = route.path;
         const fragment = route.page();
-        // Note this component structure is not ideal, it will only work if each page starts with an div
-        const firstdiv = fragment.querySelector('div')
-        // @ts-ignore
-        firstdiv.setAttribute('id', id);
-        // @ts-ignore
-        firstdiv.style.display = 'none';
-        routerContainer.appendChild(fragment);
+
+        const containerDiv = document.createElement('div');
+        containerDiv.setAttribute('id', id);
+        containerDiv.style.display = 'none';
+
+        containerDiv.appendChild(fragment);
+        routerContainer.appendChild(containerDiv);
     });
 }
 
