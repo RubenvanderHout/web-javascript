@@ -28,17 +28,17 @@ export function mixCMYK(cmykArray, index = 0, totals = [0, 0, 0, 0]) {
     return mixCMYK(cmykArray, index + 1, totals);
 }
 
-export function HSLToCMYK(h, s, l) {
-    const [r, g, b] = HSLToRGB(h, s, l);
-    return RGBToCMYK(r, g, b);
+export function hslToCMYK(h, s, l) {
+    const [r, g, b] = hslToRGB(h, s, l);
+    return rgbToCMYK(r, g, b);
 }
 
-export function CMYKToHSL(c, m, y, k) {
-    const [r, g, b] = CMYKToRGB(c, m, y, k);
-    return RGBToHSL(r, g, b);
+export function cmykToHSL(c, m, y, k) {
+    const [r, g, b] = cmykToRGB(c, m, y, k);
+    return rgbToHSL(r, g, b);
 }
 
-function HSLToRGB(h, s, l) {
+function hslToRGB(h, s, l) {
     h /= 360;
     s /= 100;
     l /= 100;
@@ -52,15 +52,15 @@ function HSLToRGB(h, s, l) {
         let q = l < 0.5 ? l * (1 + s) : l + s - l * s; // determine how to calculate the saturation based on lightness
         let p = 2 * l - q;
 
-        r = HueToRGB(p, q, h + 1/3);
-        g = HueToRGB(p, q, h);
-        b = HueToRGB(p, q, h - 1/3);
+        r = hueToRGB(p, q, h + 1/3);
+        g = hueToRGB(p, q, h);
+        b = hueToRGB(p, q, h - 1/3);
     }
 
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
 }
 
-function RGBToHSL(r, g, b) {
+function rgbToHSL(r, g, b) {
     r /= 255;
     g /= 255;
     b /= 255;
@@ -87,7 +87,7 @@ function RGBToHSL(r, g, b) {
     return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
 }
 
-function RGBToCMYK(r, g, b) {
+function rgbToCMYK(r, g, b) {
     let c = 1 - (r / 255);
     let m = 1 - (g / 255);
     let y = 1 - (b / 255);
@@ -100,7 +100,7 @@ function RGBToCMYK(r, g, b) {
     return [c, m, y, k];
 }
 
-function CMYKToRGB(c, m, y, k) {
+function cmykToRGB(c, m, y, k) {
     let r = 255 * (1 - c) * (1 - k);
     let g = 255 * (1 - m) * (1 - k);
     let b = 255 * (1 - y) * (1 - k);
@@ -109,11 +109,15 @@ function CMYKToRGB(c, m, y, k) {
 }
 
  
-function HueToRGB(s, l, h){
+function hueToRGB(s, l, h){
     if (h < 0) h += 1;
     if (h > 1) h -= 1;
     if (h < 1/6) return s + (l - s) * 6 * h;
     if (h < 1/3) return l;
     if (h < 1/2) return s + (l - s) * (2/3 - h) * 6;
     return s;
+}
+
+function generateHSL() {
+    return `hsl(${Math.floor(Math.random() * 360)}, ${Math.floor(Math.random() * 100)}%, ${Math.floor(Math.random() * 100)}%)`;
 }
