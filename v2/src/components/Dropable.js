@@ -2,7 +2,7 @@
 export function DropableComponent() {
 
     const html = `
-        <div class="droppable rectangle">
+        <div class="droppable bucket">
 
         </div>
     `;
