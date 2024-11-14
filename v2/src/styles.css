@@ -116,3 +116,14 @@ input, textarea {
     height: 500px;
     width: 500px;
 }
+
+.colortest{
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+    border : 1px solid black;
+}
+
+.grid-container {
+    display: flex;
+}
