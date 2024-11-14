@@ -20,11 +20,22 @@ export function createComponent(componentFn, refElement, props) {
     }
 }
 
+
 export function generateRandomId() {
     const uniqueId = `id-${Date.now()}-${Math.random()}`;
     return uniqueId;
 }
 
+export function debounce(callback, delay) {
+    let debounceTimeout;
+
+    return function (...args) {
+        clearTimeout(debounceTimeout); // Clear previous timeout
+        debounceTimeout = setTimeout(() => {
+            callback(...args); // Call the original callback with arguments
+        }, delay);
+    };
+}
 
 export function createObservable(initialValue) {
     let value = initialValue;

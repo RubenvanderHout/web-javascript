@@ -18,12 +18,11 @@ import { generateRandomId } from "../utils/utils.js";
  * @param {IngredientProps} ingredientProps
  * @returns {IngredientProps}
 */
-
 export function IngredientComponent(ingredientProps) {
-  /**
-   * @param {IngredientProps} ingredientProps
-   * @returns {IngredientProps}
-   */
+
+  const randomCode = generateRandomId();
+  const validTextures = ['grain', 'coarse grain', 'smooth', 'slimy'];
+
   function validateProps(ingredientProps) {
     const errors = [];
 
@@ -38,9 +37,6 @@ export function IngredientComponent(ingredientProps) {
     return ingredientProps;
   }
   validateProps(ingredientProps);
-
-  const randomCode = generateRandomId();
-  const validTextures = ['grain', 'coarse grain', 'smooth', 'slimy'];
 
   const html = `
     <div class="dot" id="${randomCode}" draggable="true"></div>

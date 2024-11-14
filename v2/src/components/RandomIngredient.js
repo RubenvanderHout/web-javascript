@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { generateRandomId } from "../utils/utils.js";
 import { IngredientComponent } from "./Ingredient.js";
 import { generateHSL } from "../utils/colors.js";
 
@@ -11,7 +10,7 @@ export function RandomIngredientComponent() {
         const mixingTime = generateMixingTime();
         const mixingSpeed = generateMixingSpeed();
         const shape = generateShape();
-        
+
 
         return {
             color,

@@ -19,10 +19,10 @@ export function mixCMYK(cmykArray, index = 0, totals = [0, 0, 0, 0]) {
     }
 
     const [c, m, y, k] = cmykArray[index];
-    totals[0] += c; 
-    totals[1] += m; 
-    totals[2] += y; 
-    totals[3] += k; 
+    totals[0] += c;
+    totals[1] += m;
+    totals[2] += y;
+    totals[3] += k;
 
     // Recursion: Add the current CMYK values to the totals and move to the next
     return mixCMYK(cmykArray, index + 1, totals);
@@ -108,7 +108,7 @@ function cmykToRGB(c, m, y, k) {
     return [Math.round(r), Math.round(g), Math.round(b)];
 }
 
- 
+
 function hueToRGB(s, l, h){
     if (h < 0) h += 1;
     if (h > 1) h -= 1;
@@ -118,6 +118,6 @@ function hueToRGB(s, l, h){
     return s;
 }
 
-function generateHSL() {
+export function generateHSL() {
     return `hsl(${Math.floor(Math.random() * 360)}, ${Math.floor(Math.random() * 100)}%, ${Math.floor(Math.random() * 100)}%)`;
 }
