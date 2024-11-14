@@ -1,7 +1,6 @@
 import { NavigationComponent } from "./components/Navigation.js";
 import { createComponent } from "./utils/utils.js";
 import { IngredientListComponent } from "./components/IngredientList.js";
-import { IngredientComponent } from "./components/Ingredient.js";
 
 export function App() {
   const html = `
@@ -9,10 +8,7 @@ export function App() {
 
         <main style="display: grid; grid-template-columns: 90vw 10vw;">
             <div id="router-container" class="page-container">
-                <mixing-hall id="mixing-hall-1"></mixing-hall>
-                <mixing-hall id="mixing-hall-2"></mixing-hall>
-                <color-test></color-test>
-                <dropable id="dropable-1"></dropable>
+
             </div>
 
             <div style="height: 90vh; background: hsl(150deg 30% 60%);">

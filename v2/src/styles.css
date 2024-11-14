@@ -83,10 +83,10 @@ input, textarea {
 }
 
 .rectangle {
-    height: 500px;
-    width: 500px;
-    background-color: #555;
-    margin-top: 100px;
+    height: 200px;
+    width: 200px;
+    background-color: #bdbdbd;
+
 }
 
 .shape {
@@ -105,4 +105,14 @@ input, textarea {
 .page-container {
     height: 90vh;
     background: hsl(0 80% 50% / 25%);
+}
+
+.bucket {
+    border-top: 250px solid red;
+    border-left: 60px solid orange;
+    border-right: 60px solid blue;
+    border-bottom: 60px solid green;
+    background-color: red;
+    height: 500px;
+    width: 500px;
 }
