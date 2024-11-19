@@ -37,60 +37,44 @@ export function debounce(callback, delay) {
     };
 }
 
-export function createObservable(initialValue) {
-    let value = initialValue;
-    let listeners = [];
-    let valueName = null;
-    let attribute = 'textContent';
+export function reactive(object){
+    const listeners = new Set();
 
-    function getValue() {
+    function wrapReactive(value) {
+        // In order to make nested objects inside other objects reactive
+        // we need to recursively wrap them in reactive
+        if (value && typeof value === 'object') {
+            return reactive(value);
+        }
         return value;
     }
 
-    function setValue(newValue) {
-        if (newValue !== value) {
-            value = newValue;
-            notify();
-            updateBoundElements();
+    const proxy = new Proxy(object, {
+        get(target, key){
+            const value = target[key];
+            return wrapReactive(value); // Ensure nested objects/arrays are reactive
+        },
+        set(target, key, value) {
+            target[key] = value;
+            listeners.forEach(listenerCallback => listenerCallback());
+            return true;
         }
-    }
+    });
 
-    function subscribe(callback) {
-        listeners.push(callback);
-        callback(value); // Call immediately with current value
-    }
+    proxy.subscribe = (listenerCallback) => listeners.add(listenerCallback);
+    return proxy;
+}
 
-    function unsubscribe(callback) {
-        listeners = listeners.filter(listener => listener !== callback);
-    }
+export function ref(initialValue) {
+    // Wrap the value so the user doesn't need to make a object
+    const obj = { value: initialValue };
+    return reactive(obj);
+}
 
-    function notify() {
-        listeners.forEach(listener => listener(value));
-    }
-
-    function bindToElements(name, attr = 'textContent') {
-        valueName = name;
-        attribute = attr;
-        updateBoundElements();
-        notify();
-    }
-
-    function updateBoundElements() {
-        if (valueName) {
-            const boundElements = document.querySelectorAll(`[data-bind="${valueName}"]`);
-            boundElements.forEach(el => {
-                el[attribute] = value;
-            });
-        }
-    }
-
-    return {
-        getValue,
-        setValue,
-        subscribe,
-        unsubscribe,
-        bindToElements,
-        notify,
-        updateBoundElements
-    };
+export function computed(getterCallback) {
+    const obj = { value: getterCallback() };
+    // Uses getterCallback closure and recomputes to update the value
+    const recompute = () => { obj.value = getterCallback(); };
+    obj.subscribe = (listenerCallback) => listenerCallback(recompute);
+    return obj;
 }
