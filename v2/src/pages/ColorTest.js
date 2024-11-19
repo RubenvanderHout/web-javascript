@@ -34,6 +34,7 @@ export function ColorTestPage() {
 }
 
 function generateGrid() {
+    event.preventDefault();
     //@ts-ignore
     const x = document.getElementById('grid-x').value;
     //@ts-ignore
