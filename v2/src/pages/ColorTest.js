@@ -5,8 +5,8 @@ export function ColorTestPage() {
         <div class="color-test-page">
             <h1>Color Test!</h1>
             <form id="generate-grid">
-                <input type="number" min="1" max="20" id="grid-x" placeholder="x">
-                <input type="number" min="1" max="20" id="grid-y" placeholder="y">
+                <input type="number" min="1" max="8" id="grid-x" placeholder="x">
+                <input type="number" min="1" max="8" id="grid-y" placeholder="y">
                 <input type="submit" value="Generate Grid">
             </form>
             <div id="color_swatch">
