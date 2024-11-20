@@ -51,7 +51,7 @@ function generateGrid() {
             // create square
             const square = document.createElement('div');
             square.classList.add('colorswatch');
-            square.style.backgroundColor = 'hsl(261, 93%, 45%)'
+            square.style.backgroundColor = 'hsl(0 0% 50%)'
             square.onclick = swatchClick;
             row.appendChild(square);
 
@@ -73,10 +73,18 @@ function generateGrid() {
 
                 // @ts-ignore
                 const draggedElementId = event.dataTransfer.getData("text");
-                const draggedElement = document.getElementById(draggedElementId);
+                const colorElement = document.getElementById(draggedElementId);
 
-                // @ts-ignore
-                square.style.backgroundColor = draggedElement.firstChild.style.backgroundColor;
+                // if class mixingpot take the first child
+                if (colorElement.classList.contains('mixingpot')) {
+                    // @ts-ignore
+                    square.style.backgroundColor = colorElement.firstChild.style.backgroundColor;
+                }
+                else {
+                    // @ts-ignore
+                    square.style.backgroundColor = colorElement.style.backgroundColor;
+                }
+                colorElement.remove();
 
                 return false;
             })

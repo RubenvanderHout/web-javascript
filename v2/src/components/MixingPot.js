@@ -1,6 +1,11 @@
+// @ts-nocheck
+import { generateRandomId } from "../utils/utils.js";
+
 export function MixingPotComponent() {
+    const randomCode = generateRandomId();
+
     const html = `
-        <div class="droppable rectangle">
+        <div id="mixingpot-${randomCode}" class="mixingpot rectangle">
 
         </div>
     `;
