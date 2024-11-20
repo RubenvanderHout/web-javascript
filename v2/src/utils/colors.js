@@ -1,7 +1,11 @@
 // explaination of the formulas in this file: https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL
 
-export function getTriadicColors(hslColor) {
+export function getTriadicColors(baseColor) {
     // Extract the HSL components from the input string
+    const [r, g, b] = baseColor.match(/\d+/g).map(Number);
+    const hslColor = rgbToHSL(r, g, b).join(', ');
+    console.log(hslColor);
+
     const [h, s, l] = hslColor.match(/\d+/g).map(Number);
 
     // Calculate the two triadic colors

@@ -129,7 +129,6 @@ input, textarea {
 .colortest{
     height: 50px;
     width: 50px;
-    background-color: grey;
     border : 1px solid black;
 }
 
@@ -141,7 +140,7 @@ input, textarea {
     border: 1px solid black;
 }
 
-#triadic-1 {
+#triadic-2 {
     margin-top: 75px;
 }
 

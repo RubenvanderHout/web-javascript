@@ -1,3 +1,5 @@
+import { getTriadicColors } from '../utils/colors.js';
+
 export function ColorTestPage() {
     
 
@@ -16,8 +18,8 @@ export function ColorTestPage() {
             <div class="centered">
                 <h2>Triadic Colors</h2>
                 <div class="flex-container">
-                    <div class="triadic-square" id="triadic-1"></div>
                     <div class="triadic-square" id="triadic-2"></div>
+                    <div class="triadic-square" id="triadic-1"></div>
                     <div class="triadic-square" id="triadic-3"></div>
                 </div>
             </div>
@@ -49,10 +51,31 @@ function generateGrid() {
             // create square
             const square = document.createElement('div');
             square.classList.add('colortest');
+            square.style.backgroundColor = 'hsl(261, 93%, 45%)'
+            square.onclick = swatchClick;
             row.appendChild(square);
         }
         parent.appendChild(row);
         
     }
     
+}
+
+function swatchClick() {
+    const swatch = event.target;
+    console.log('swatch clicked');
+
+    //@ts-ignore
+    const baseColor = swatch.style.backgroundColor;
+    console.log(baseColor);
+
+    const triadicColors = getTriadicColors(baseColor);
+
+    const triadic1 = document.getElementById('triadic-1');
+    const triadic2 = document.getElementById('triadic-2');
+    const triadic3 = document.getElementById('triadic-3');
+
+    triadic1.style.backgroundColor = baseColor;
+    triadic2.style.backgroundColor = triadicColors[0];
+    triadic3.style.backgroundColor = triadicColors[1];
 }
