@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
 html {
     font-size: 18px;
 }
@@ -12,7 +17,6 @@ html {
 body {
     color: #444;
     background-color: #EEE;
-    max-width: 650px;
     line-height: 1.6em;
     padding: 0;
     -webkit-font-smoothing: antialiased; /* Smooth fonts in WebKit browsers */
@@ -82,6 +86,26 @@ input, textarea {
     }
 }
 
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    height: 100%;
+}
+
+.nav {
+    background: hsl(206 100% 83%);
+}
+
+.main {
+    flex: 3;
+}
+
+.sidebar {
+    flex: 1;
+    background: hsl(150deg 30% 60%);
+}
+
 .flex-container {
     display: flex;
 }
@@ -113,7 +137,8 @@ input, textarea {
 }
 
 .page-container {
-    height: 90vh;
+    height: 100%;
+    width: 100%;
     background: hsl(0 80% 50% / 25%);
 }
 
