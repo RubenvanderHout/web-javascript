@@ -2,7 +2,7 @@ import { routes, navigate } from "../Router.js";
 
 export function NavigationComponent() {
   const html = `
-        <nav style=" height: 10vh; background: hsl(206 100% 83%); width: 100vw;">
+        <nav class="nav">
             <h1>Future Colors - Color simulator</h1>
             <ul class="horizontal-list">
             </ul>
