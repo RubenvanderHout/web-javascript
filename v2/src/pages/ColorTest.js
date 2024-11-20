@@ -50,10 +50,36 @@ function generateGrid() {
         for (let j = 0; j < y; j++) {
             // create square
             const square = document.createElement('div');
-            square.classList.add('colortest');
+            square.classList.add('colorswatch');
             square.style.backgroundColor = 'hsl(261, 93%, 45%)'
             square.onclick = swatchClick;
             row.appendChild(square);
+
+            square.addEventListener('dragover', (event) => {
+                event.preventDefault();
+                return false;
+            });
+
+            square.addEventListener('dragenter', (event) => {
+                square.classList.add('over');
+            });
+
+            square.addEventListener('dragleave', (event) => {
+                square.classList.remove('over');
+            });
+
+            square.addEventListener('drop', (event) => {
+                event.preventDefault();
+
+                // @ts-ignore
+                const draggedElementId = event.dataTransfer.getData("text");
+                const draggedElement = document.getElementById(draggedElementId);
+
+                // @ts-ignore
+                square.style.backgroundColor = draggedElement.firstChild.style.backgroundColor;
+
+                return false;
+            })
         }
         parent.appendChild(row);
         
