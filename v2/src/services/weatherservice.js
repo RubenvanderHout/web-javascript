@@ -8,7 +8,7 @@ const WeatherData = {
  * @param {number} longitude
  * @param {number} latitude
  */
-export async function getForcast(longitude, latitude) {
+export async function getForecast(longitude, latitude) {
     let url = WeatherData.WEATHER_API_URL;
     url += `?latitude=${longitude}&longitude=${latitude}` + WeatherData.WEATHER_API_PART;
 

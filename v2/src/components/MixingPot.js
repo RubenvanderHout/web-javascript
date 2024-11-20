@@ -17,6 +17,19 @@ export function MixingPotComponent() {
     // Show you can drop on the mixing pot
     mixingPot.addEventListener('dragover', (event) => {
         event.preventDefault();
+        // if the mixingpot already contains ingredients, the new ingredient must match the mixingspeed of the first ingredient
+        if (mixingPot.children.length > 0) {
+            // @ts-ignore
+            const firstIngredient = mixingPot.children[0];
+            // @ts-ignore
+            const firstIngredientMixingSpeed = firstIngredient.getAttribute('mixingspeed');
+            // @ts-ignore
+            const draggedElementMixingSpeed = event.dataTransfer.getData('mixingspeed');
+            if (firstIngredientMixingSpeed !== draggedElementMixingSpeed) {
+                return false;
+            }
+        }
+
         return false;
     });
 

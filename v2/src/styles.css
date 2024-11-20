@@ -192,3 +192,9 @@ input, textarea {
 #triadic-3 {
     margin-top: 75px;
 }
+
+.color-test-page{
+    display: grid;
+    grid-template-rows: auto auto auto; 
+    justify-content: space-between;
+}

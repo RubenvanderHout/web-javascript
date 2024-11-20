@@ -1,5 +1,8 @@
 // @ts-nocheck
 import { generateRandomId, reactive, computed } from "../utils/utils.js";
+import { getWeatherModifier } from "../utils/weather.js";
+import { mixCMYK } from "../utils/colors.js";
+
 
 export function MixingMachineComponent(){
 
@@ -55,8 +58,56 @@ export function MixingMachineComponent(){
 
         mixingMachine.appendChild(draggedElement);
 
+        mix(draggedElement);
+
         return false;
     });
 
+    mixingMachine.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        if(mixingContents.length > 0){
+            return false;
+        }
+    });
+
     return fragment;
+}
+
+async function mix(mixingPot){
+    // get highest mixingt time from all ingredients
+    let mixingTime = 0;
+    for(const ingredient of mixingPot.children){
+        const ingredientMixingTime = ingredient.getAttribute("mixingTime");
+        if(ingredientMixingTime > mixingTime){
+            mixingTime = ingredientMixingTime;
+        }
+    }
+    
+    function getLocation() {
+        if (navigator.geolocation) {
+          const position = navigator.geolocation.getCurrentPosition();
+        } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+      }
+    // apply weather modifiers from api
+    const weatherModifier = await getWeatherModifier(position);
+    mixingTime *= weatherModifier;
+
+    // set timer
+    setTimeout(() => {
+        // mix colors
+        const cmyk = mixCMYK(mixingContents.value);
+        const hsl = cmykToHSL(...cmyk);
+        // empty mixing pot
+        mixingPot.innerHTML = "";
+        // create new color element
+        const colorElement = document.createElement('div');
+        colorElement.style.backgroundColor = `hsl(${hsl[0]} ${hsl[1]}% ${hsl[2]}%)`;
+        mixingPot.appendChild(colorElement);
+        // move mixing pot to output area
+        const outputArea = document.getElementById('the-other-side');
+        outputArea.appendChild(mixingPot);
+
+    }, mixingTime);
 }
