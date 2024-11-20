@@ -140,7 +140,24 @@ input, textarea {
     border: 1px solid black;
 }
 
-#triadic-2 {
+
+
+.mixing-machine {
+    height: 200px;
+    width: 200px;
+    background-color: #bdbdbd;
+}
+
+.mixingHallContainer {
+    display: flex;
+    justify-content: start;
+}
+
+.mixingHallContainer > div{
+    margin: 50px;
+}
+
+#triadic-1 {
     margin-top: 75px;
 }
 

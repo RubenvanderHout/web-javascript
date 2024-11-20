@@ -7,8 +7,9 @@ export function MixingPotComponent() {
     const range = document.createRange();
     const fragment = range.createContextualFragment(html);
 
-    const mixingPot = fragment.querySelector('.rectangle');
+    const mixingPot = fragment.querySelector('div');
 
+    // Show you can drop on the mixing pot
     mixingPot.addEventListener('dragover', (event) => {
         event.preventDefault();
         return false;
@@ -33,6 +34,24 @@ export function MixingPotComponent() {
 
         return false;
     })
+
+    mixingPot.addEventListener('dragstart', (event) => {
+        event.preventDefault();
+        mixingPot.style.setProperty('opacity', '0.4');
+        event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.clearData();
+        // @ts-ignore
+        event.dataTransfer.setData('text/plain', event.target.id);
+
+        return false;
+    })
+
+    mixingPot.addEventListener('dragend', (event) => {
+        event.preventDefault();
+        mixingPot.style.setProperty("opacity", "1");
+        return false;
+    })
+
 
 
     return fragment;

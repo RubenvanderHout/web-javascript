@@ -1,17 +1,25 @@
 import { MixingPotComponent } from "../components/MixingPot.js";
+import { MixingMachineComponent } from "../components/MixingMachine.js";
 
 export function MixingHallPage() {
     const html = `
         <div>
             <h1>Mixing Hall!</h1>
+
+            <div class="mixingHallContainer">
+
+            </div>
         </div>
     `;
     const range = document.createRange();
     const fragment = range.createContextualFragment(html);
 
-    const div = fragment.querySelector('div');
+    const container = fragment.querySelector('.mixingHallContainer');
 
-    div.appendChild(MixingPotComponent());
+    container.appendChild(MixingPotComponent());
+    container.appendChild(MixingMachineComponent());
+
+
 
 
 
