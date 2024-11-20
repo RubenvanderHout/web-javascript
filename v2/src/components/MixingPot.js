@@ -1,76 +1,98 @@
-// @ts-nocheck
 import { generateRandomId } from "../utils/utils.js";
 
 export function MixingPotComponent() {
+
     const randomCode = generateRandomId();
 
     const html = `
-        <div id="mixingpot-${randomCode}" class="mixingpot rectangle">
-
+        <div class="error hidden"></div>
+        <div id="mixingpot-${randomCode}" class="mixingpot rectangle draggable="true"">
+            <div class="mixingpot-handle" draggable="true"></div>
+            <div class="mixingpot-content"></div>
         </div>
     `;
     const range = document.createRange();
     const fragment = range.createContextualFragment(html);
 
-    const mixingPot = fragment.querySelector('div');
+    const mixingPot = fragment.querySelector('.mixingpot');
+    const mixingPotContent = fragment.querySelector('.mixingpot-content');
+    const mixingPotHandle = fragment.querySelector('.mixingpot-handle');
 
     // Show you can drop on the mixing pot
-    mixingPot.addEventListener('dragover', (event) => {
+    mixingPotContent.addEventListener('dragover', (event) => {
         event.preventDefault();
-        // if the mixingpot already contains ingredients, the new ingredient must match the mixingspeed of the first ingredient
-        if (mixingPot.children.length > 0) {
+    });
+
+    mixingPotContent.addEventListener('dragenter', (event) => {
+        mixingPotContent.classList.add('over');
+    });
+
+    mixingPotContent.addEventListener('dragleave', (event) => {
+        mixingPotContent.classList.remove('over');
+    });
+
+    mixingPotContent.addEventListener('drop', (event) => {
+        event.preventDefault();
+
+        // @ts-ignore
+        const draggedElementId = event.dataTransfer.getData("text/plain");
+        const draggedElement = document.getElementById(draggedElementId);
+
+        console.log(draggedElement);
+
+        if (canDropItemsInside(draggedElement)) {
+            mixingPotContent.appendChild(draggedElement);
+        }
+    })
+
+
+    function canDropItemsInside(droppedElement) {
+
+        if (!droppedElement.classList.contains('shape')) {
+            return false;
+        }
+
+        // @ts-ignore
+        if (mixingPotContent.children.length > 0) {
             // @ts-ignore
-            const firstIngredient = mixingPot.children[0];
+            const firstIngredient = mixingPotContent.children[0];
             // @ts-ignore
             const firstIngredientMixingSpeed = firstIngredient.getAttribute('mixingspeed');
             // @ts-ignore
-            const draggedElementMixingSpeed = event.dataTransfer.getData('mixingspeed');
+            const draggedElementMixingSpeed = droppedElement.getAttribute('mixingspeed');
+
             if (firstIngredientMixingSpeed !== draggedElementMixingSpeed) {
                 return false;
             }
         }
 
-        return false;
-    });
+        return true;
+    }
 
-    mixingPot.addEventListener('dragenter', (event) => {
-        mixingPot.classList.add('over');
-    });
 
-    mixingPot.addEventListener('dragleave', (event) => {
-        mixingPot.classList.remove('over');
-    });
-
-    mixingPot.addEventListener('drop', (event) => {
-        event.preventDefault();
-
+    mixingPotHandle.addEventListener('dragstart', (event) => {
         // @ts-ignore
-        const draggedElementId = event.dataTransfer.getData("text");
-        const draggedElement = document.getElementById(draggedElementId);
-
-        mixingPot.appendChild(draggedElement);
-
-        return false;
-    })
-
-    mixingPot.addEventListener('dragstart', (event) => {
-        event.preventDefault();
         mixingPot.style.setProperty('opacity', '0.4');
-        event.dataTransfer.effectAllowed = 'move';
+
+        const mixingPotId= mixingPot.getAttribute('id');
+        console.log(mixingPotId);
+        // @ts-ignore
+        event.dataTransfer.effectAllowed = 'copy';
+        // @ts-ignore
         event.dataTransfer.clearData();
         // @ts-ignore
-        event.dataTransfer.setData('text/plain', event.target.id);
+        event.dataTransfer.setData('text/plain', mixingPotId);
 
         return false;
     })
 
-    mixingPot.addEventListener('dragend', (event) => {
-        event.preventDefault();
+
+
+    mixingPotHandle.addEventListener('dragend', (event) => {
+        // @ts-ignore
         mixingPot.style.setProperty("opacity", "1");
         return false;
     })
-
-
 
     return fragment;
 }

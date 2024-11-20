@@ -43,11 +43,11 @@ export function IngredientComponent(ingredientProps) {
   const html = `
     <div class="shape"
       id="${randomCode}"
-      draggable="true" 
-      texture="${ingredientProps.texture}" 
+      draggable="true"
+      texture="${ingredientProps.texture}"
       mixingSpeed="${ingredientProps.mixingSpeed}"
-      mixingTime="${ingredientProps.mixingTime}" 
-      style="background-color: ${ingredientProps.color}; ${ingredientProps.shape}" 
+      mixingTime="${ingredientProps.mixingTime}"
+      style="background-color: ${ingredientProps.color}; ${ingredientProps.shape}"
       color="${ingredientProps.color}">
       </div>
   `;
@@ -55,13 +55,14 @@ export function IngredientComponent(ingredientProps) {
   const fragment = range.createContextualFragment(html);
   const shape = fragment.querySelector(".shape");
 
+  // Handle drag start
   shape.addEventListener("dragstart", (event) => {
     shape.style.setProperty("opacity", "0.4");
     event.dataTransfer.effectAllowed = "move";
     event.dataTransfer.clearData();
     event.dataTransfer.setData("text/plain", event.target.id);
   });
-
+  // Handle drag end
   shape.addEventListener("dragend", (event) => {
     shape.style.setProperty("opacity", "1");
   });

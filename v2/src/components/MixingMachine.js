@@ -6,7 +6,7 @@ import { mixCMYK } from "../utils/colors.js";
 
 export function MixingMachineComponent(){
 
-    const id = "mixing-machine-" + generateRandomId();
+    const id = "mixingmachine-" + generateRandomId();
 
     const mixingContents = reactive(["Water", "Flour"]);
     const mixingTooltip = computed(() => {
@@ -18,7 +18,7 @@ export function MixingMachineComponent(){
     });
 
     const html = `
-        <div id="${id}" class="mixing-machine">
+        <div id="mixing-machine-${id}" class="mixing-machine">
             ${mixingTooltip.value}
         </div>
     `
@@ -48,16 +48,15 @@ export function MixingMachineComponent(){
 
         return false;
     });
-
+    // TODO structure of mixingpots isn't correct yet so implement this later when that is ready
     mixingMachine.addEventListener('drop', (event) => {
         event.preventDefault();
 
         // @ts-ignore
-        const draggedElementId = event.dataTransfer.getData("text");
-        const draggedElement = document.getElementById(draggedElementId);
+        const mixingPotId = event.dataTransfer.getData("text/plain");
+        const mixingPot = document.getElementById(mixingPotId);
 
-        mixingMachine.appendChild(draggedElement);
-
+        mixingMachine.appendChild(mixingPot);
         mix(draggedElement);
 
         return false;
@@ -82,7 +81,7 @@ async function mix(mixingPot){
             mixingTime = ingredientMixingTime;
         }
     }
-    
+
     function getLocation() {
         if (navigator.geolocation) {
           const position = navigator.geolocation.getCurrentPosition();
