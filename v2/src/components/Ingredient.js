@@ -42,13 +42,22 @@ export function IngredientComponent(ingredientProps) {
 
   const html = `
     <div class="shape"
-      id="${randomCode}"
+      id="ingredient-${randomCode}"
       draggable="true"
       texture="${ingredientProps.texture}"
       mixingSpeed="${ingredientProps.mixingSpeed}"
       mixingTime="${ingredientProps.mixingTime}"
       style="background-color: ${ingredientProps.color}; ${ingredientProps.shape}"
-      color="${ingredientProps.color}">
+      color="${ingredientProps.color}"
+      >
+
+        <div popover id="popover-${randomCode}">
+            <p>Texture: ${ingredientProps.texture}</p>
+            <p>Color: ${ingredientProps.color}</p>
+            <p>Mixing time: ${ingredientProps.mixingTime}</p>
+            <p>Mixing speed: ${ingredientProps.mixingSpeed}</p>
+        </div>
+
       </div>
   `;
   const range = document.createRange();
@@ -65,6 +74,14 @@ export function IngredientComponent(ingredientProps) {
   // Handle drag end
   shape.addEventListener("dragend", (event) => {
     shape.style.setProperty("opacity", "1");
+  });
+  shape.addEventListener("mouseover", (event) => {
+    const popover = document.getElementById(`popover-${randomCode}`);
+    popover.showPopover();
+  });
+  shape.addEventListener("mouseleave", (event) => {
+    const popover = document.getElementById(`popover-${randomCode}`);
+    popover.hidePopover();
   });
 
   return fragment;
