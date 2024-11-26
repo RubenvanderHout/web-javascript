@@ -5,7 +5,6 @@ export function MixingPotComponent() {
     const randomCode = generateRandomId();
 
     const html = `
-        <div class="error hidden"></div>
         <div id="mixingpot-${randomCode}" class="mixingpot rectangle draggable="true"">
             <div class="mixingpot-handle" draggable="true"></div>
             <div class="mixingpot-content"></div>

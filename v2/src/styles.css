@@ -190,22 +190,43 @@ input, textarea {
     border: 1px solid black;
 }
 
-
-
 .mixing-machine {
     height: 200px;
     width: 200px;
     background-color: #bdbdbd;
 }
 
-.mixingHallContainer {
+.mixing-seperator {
     display: flex;
-    justify-content: start;
+    flex-direction: row;
+    margin-top: 1rem;
+
 }
 
-.mixingHallContainer > div{
-    margin: 50px;
+.mixingpot-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
 }
+
+.mixingmachine-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+}
+
+.mixingpot-list > div {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.mixingmachine-list > div {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
 
 #triadic-2{
     margin-top: 75px;
@@ -215,7 +236,7 @@ input, textarea {
 #triadic-3 {
     margin-top: 75px;
 }
- upstream
+
 .color-test-page{
     display: grid;
     grid-template-rows: auto auto auto;

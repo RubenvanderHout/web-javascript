@@ -1,28 +1,30 @@
 import { MixingPotComponent } from "../components/MixingPot.js";
 import { MixingMachineComponent } from "../components/MixingMachine.js";
+import { MixingMachineList } from "../components/mixingMachineList.js";
+import { createComponent } from "../utils/utils.js";
+import { MixingPotListComponent } from "../components/MixingPotList.js";
 
 export function MixingHallPage() {
     const html = `
-        <div>
+        <div class="mixing-hall">
             <h1>Mixing Hall!</h1>
 
-            <div class="mixingHallContainer">
+            <div class="mixing-seperator">
+                <div class="mixingpot-container">
+                    <mixingpot-list></mixingpot-list>
+                </div>
 
+                <div class="mixingmachine-container">
+                    <mixingmachine-list></mixingmachine-list>
+                </div>
             </div>
         </div>
     `;
     const range = document.createRange();
     const fragment = range.createContextualFragment(html);
 
-    const container = fragment.querySelector('.mixingHallContainer');
-
-    container.appendChild(MixingPotComponent());
-    container.appendChild(MixingMachineComponent());
-
-
-
-
-
+    createComponent(MixingPotListComponent, fragment.querySelector('mixingpot-list'));
+    createComponent(MixingMachineList, fragment.querySelector('mixingmachine-list'));
 
     return fragment;
 }
