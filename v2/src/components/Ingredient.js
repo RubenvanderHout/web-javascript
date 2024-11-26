@@ -51,11 +51,11 @@ export function IngredientComponent(ingredientProps) {
       color="${ingredientProps.color}"
       >
 
-        <div popover id="popover-${randomCode}">
-            <p>Texture: ${ingredientProps.texture}</p>
-            <p>Color: ${ingredientProps.color}</p>
-            <p>Mixing time: ${ingredientProps.mixingTime}</p>
-            <p>Mixing speed: ${ingredientProps.mixingSpeed}</p>
+        <div popover id="popover-${randomCode}" class="ingredient-info">
+            <span>Texture: ${ingredientProps.texture}</span>
+            <span>Color: ${ingredientProps.color}</span>
+            <span>Mixing time: ${ingredientProps.mixingTime}</span>
+            <span>Mixing speed: ${ingredientProps.mixingSpeed}</span>
         </div>
 
       </div>

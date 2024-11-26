@@ -242,3 +242,14 @@ input, textarea {
     grid-template-rows: auto auto auto;
     justify-content: space-between;
 }
+
+.ingredient-info:popover-open {
+    right: 0;
+    display: flex;
+    position: absolute;
+    width: 35vw;
+    margin-left: 65vw
+}
+.ingredient-info>span{
+    margin-right: 10px;
+}
