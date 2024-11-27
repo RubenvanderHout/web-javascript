@@ -1,10 +1,12 @@
 import { MixingHallPage } from "./pages/MixingHall.js";
 import { ColorTestPage } from "./pages/ColorTest.js";
+import { WeatherInfoComponent } from "./components/WeatherInfo.js";
 
 export const routes = [
     { path: '/', title: 'Mixing hall 1', page: MixingHallPage, showInNavbar: true },
     { path: '/mixinghall/2', title: 'Mixing hall 2', page: MixingHallPage, showInNavbar: true },
     { path: '/colortest', title: 'Color test', page: ColorTestPage, showInNavbar: true },
+    { path: "/weather", title: 'Weather & location', page: WeatherInfoComponent, showInNavbar: true },
 ];
 
 let oldRoute = null;

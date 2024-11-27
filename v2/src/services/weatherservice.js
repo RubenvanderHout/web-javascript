@@ -4,6 +4,9 @@ const WeatherData = {
     GEOCODING_API_URL : "https://geocoding-api.open-meteo.com/v1/search"
 }
 
+export let currentWeatherInfo = null;
+
+
 /**
  * @param {number} longitude
  * @param {number} latitude
@@ -24,12 +27,13 @@ export async function getForecast(longitude, latitude) {
 /**
  * @param {string} cityName
  */
-export async function searchLocation(cityName) {
+export async function searchLocations(cityName) {
     const url = WeatherData.GEOCODING_API_URL + `?name=${cityName}`;
 
     try {
         const response = await fetch(url);
-        const location = await response.json();
+        const tmp = await response.json();
+        const location = tmp.results;
         return location;
     } catch (error) {
         console.log(`Could not return Location because: ${error}`)

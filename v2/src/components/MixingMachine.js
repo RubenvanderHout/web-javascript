@@ -88,7 +88,9 @@ async function mix(mixingPot){
         } else {
           x.innerHTML = "Geolocation is not supported by this browser.";
         }
-      }
+    }
+
+
     // apply weather modifiers from api
     const weatherModifier = await getWeatherModifier(position);
     mixingTime *= weatherModifier;

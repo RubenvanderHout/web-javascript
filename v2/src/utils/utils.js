@@ -31,8 +31,8 @@ export function debounce(callback, delay) {
 
     return function (...args) {
         clearTimeout(debounceTimeout); // Clear previous timeout
-        debounceTimeout = setTimeout(() => {
-            callback(...args); // Call the original callback with arguments
+        debounceTimeout = setTimeout(async () => {
+            await callback(...args); // Call the original callback with arguments
         }, delay);
     };
 }
