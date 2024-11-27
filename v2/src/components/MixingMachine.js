@@ -40,14 +40,7 @@ export function MixingMachineComponent(){
         mixingMachine.classList.remove('over');
     });
 
-    mixingMachine.addEventListener('hover', (event) => {
-        event.preventDefault();
-
-        // Show the current color
-
-
-        return false;
-    });
+   
     // TODO structure of mixingpots isn't correct yet so implement this later when that is ready
     mixingMachine.addEventListener('drop', (event) => {
         event.preventDefault();
