@@ -39,7 +39,7 @@ export function MixingMachineList() {
     const mixingtime = document.getElementById(mixingtimeId).value;
     machineElement.setAttribute("mixingspeed",mixingspeed);
     machineElement.setAttribute("mixingtime",mixingtime);
-    machineElement.innerHTML = `Mixing Speed: ${mixingspeed} Mixing Time: ${mixingtime} ms`;
+    machineElement.innerHTML = `<span>Mixing Speed: ${mixingspeed} Mixing Time: ${mixingtime} ms</span>`;
     mixingMachineList.append(machine);
   });
 
