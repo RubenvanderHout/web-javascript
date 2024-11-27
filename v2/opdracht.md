@@ -19,7 +19,7 @@ Maak een applicatie die de volgende aspecten heeft:
 
 [x] Je kan ingredienten in de verschillende potten 'slepen', alleen ingredienten met dezelfde mengsnelheid kunnen bij elkaar.
 
-[ ] Je kan meerdere mengmachines aanmaken met verschillende instellingen (mengsnelheid/mengtijd)
+[x] Je kan meerdere mengmachines aanmaken met verschillende instellingen (mengsnelheid/mengtijd)
 
 [ ] Je kan een pot de mengmachine plaatsen door middel van drag en drop.
 
