@@ -25,7 +25,7 @@ Maak een applicatie die de volgende aspecten heeft:
 
 [ ] Potten die in de mengmachine worden geplaatst komen automatisch 'aan de andere kant' er weer uit na de hoogste mengtijd van een ingredient
 
-[ ] Er is een animatie aanwezig (zelf te bepalen)
+[ ] Er is een animatie aanwezig (zelf te bepalen) - Laad balk
 
 [x] Er zijn twee Menghallen beschikbaar waar je machines kan plaatsen en afzonderlijk werken. Je kan wisselen tussen de hallen zonder dat de pagina opnieuw wordt geladen. 
 

@@ -210,6 +210,12 @@ input, textarea {
     align-items: center;
 }
 
+.mixingpot-container > button {
+    margin: 10px;
+    height: 35px;
+    min-width: 200px;
+}
+
 .mixingmachine-container {
     display: flex;
     flex-direction: column;
@@ -283,4 +289,16 @@ input, textarea {
 
 .result-item:hover {
     background-color: #f0f0f0;
+}
+
+.mixing-machine-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.mixing-machine-form > input {
+    margin: 10px;
+    min-width: 200px;
+    height: 35px;
 }
