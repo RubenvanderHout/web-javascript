@@ -16,6 +16,7 @@ export function getTriadicColors(baseColor) {
 }
 
 export function mixCMYK(rgbArray, index = 0, totals = [0, 0, 0, 0]) {
+    console.log(rgbArray);
     const cmykArray = rgbArray.map(([r, g, b]) => rgbToCMYK(r, g, b));
     
     // Base case: If we've gone through all the CMYK values
