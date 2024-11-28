@@ -11,7 +11,9 @@ export function WeatherInfoComponent() {
   const temperatureId = `temperature-${id}`
   const precipitationId = `precipitation-${id}`
 
-  // console.log(currentWeatherInfo.value);
+  const rainButtonId = `rain-button-${id}`
+  const hotTempButtonId = `cold-button-${id}`
+  const coldTempButtonId = `hot-button-${id}`
 
   const html = `
     <h1>Weather & location settings</h1>
@@ -25,9 +27,9 @@ export function WeatherInfoComponent() {
     <h5 id="${temperatureId}">temperature ${currentWeatherInfo?.value?.temperature} </h5>
     <h5 id="${precipitationId}">precipitation ${currentWeatherInfo?.value?.precipitation} </h5>
 
-    <button>Make it rain</button>
-    <button>Make it 36°C</button>
-    <button>Make it 9°C</button>
+    <button id="${rainButtonId}">Make it rain</button>
+    <button id="${hotTempButtonId}">Make it 36°C</button>
+    <button id="${coldTempButtonId}">Make it 9°C</button>
 
     <input type="text" id="location-search-bar" placeholder="Search for a location..." autocomplete="off">
     <div id="search-results" style="display: none;"></div>
@@ -46,6 +48,11 @@ export function WeatherInfoComponent() {
   const latitudeElement = fragment.getElementById(latitudeId);
   const temperatureElement = fragment.getElementById(temperatureId);
   const precipitationElement = fragment.getElementById(precipitationId);
+
+  const rainButtonElement = fragment.getElementById(rainButtonId);
+  const hotTempButtonElement = fragment.getElementById(hotTempButtonId);
+  const coldTempButtonElement = fragment.getElementById(coldTempButtonId);
+
 
   currentWeatherInfo.subscribe(() => {
     cityElement.innerHTML = `City: ${currentWeatherInfo.name}`;
@@ -100,5 +107,19 @@ export function WeatherInfoComponent() {
         resultsContainer.style.display = results.length > 0 ? 'block' : 'none';
     }
 
-  return fragment;
+    rainButtonElement.addEventListener('click', () => {
+      currentWeatherInfo.precipitation = 1;
+    });
+
+
+    hotTempButtonElement.addEventListener('click', () => {
+      currentWeatherInfo.temperature = 36;
+    });
+
+
+    coldTempButtonElement.addEventListener('click', () => {
+      currentWeatherInfo.temperature = 9;
+    });
+
+    return fragment;
 }
