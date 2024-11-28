@@ -3,6 +3,7 @@ import { createComponent } from "./utils/utils.js";
 import { IngredientListComponent } from "./components/IngredientList.js";
 import { ColorListComponent } from "./components/ColorList.js";
 
+
 export function App() {
   const html = `
         <nav></nav>
