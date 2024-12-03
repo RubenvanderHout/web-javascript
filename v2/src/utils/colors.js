@@ -20,14 +20,21 @@ export function mixCMYK(rgbArray) {
     let c = 0, m = 0, y = 0, k = 0;
 
     cmykArray.forEach(([c1, m1, y1, k1]) => {
-        c = Math.min(c + c1, 1);
-        m = Math.min(m + m1, 1);
-        y = Math.min(y + y1, 1);
-        k = Math.min(k + k1, 1);
+        c += c1;
+        m += m1;
+        y += y1;
+        k = Math.max(k, k1); // Use the darkest black component
     });
+
+    // Normalize the averages
+    const count = cmykArray.length;
+    c = Math.min(c / count, 1);
+    m = Math.min(m / count, 1);
+    y = Math.min(y / count, 1);
 
     return [c, m, y, k];
 }
+
 
 
 export function hslToCMYK(h, s, l) {
@@ -115,14 +122,24 @@ function rgbToCMYK(r, g, b) {
 
 
 export function cmykToRGB(c, m, y, k) {
+    // Ensure inputs are within the valid range [0, 1]
+    c = Math.min(Math.max(c, 0), 1);
+    m = Math.min(Math.max(m, 0), 1);
+    y = Math.min(Math.max(y, 0), 1);
+    k = Math.min(Math.max(k, 0), 1);
+
+    // Convert CMYK to RGB
     let r = 255 * (1 - c) * (1 - k);
     let g = 255 * (1 - m) * (1 - k);
     let b = 255 * (1 - y) * (1 - k);
 
-    console.log(`cmykToRGB: ${r}, ${g}, ${b}`);
+    // Log results for debugging
+    console.log(`cmykToRGB: c=${c}, m=${m}, y=${y}, k=${k}, r=${r}, g=${g}, b=${b}`);
 
+    // Round and return
     return [Math.round(r), Math.round(g), Math.round(b)];
 }
+
 
 
 function hueToRGB(s, l, h) {
