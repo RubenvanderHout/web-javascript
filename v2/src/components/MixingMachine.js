@@ -57,7 +57,8 @@ export function MixingMachineComponent(){
 async function mix(mixingPot){
     // get highest mixingt time from all ingredients
     let mixingTime = 0;
-    const ingredients = mixingPot.querySelector(".mixingpot-content").children;
+    const mixingPotContent = mixingPot.querySelector(".mixingpot-content");
+    const ingredients = mixingPotContent.children;
     for(const ingredient of ingredients){
         const ingredientMixingTime = ingredient.getAttribute("mixingTime");
         if(ingredientMixingTime > mixingTime){
@@ -97,11 +98,13 @@ async function mix(mixingPot){
         const cmyk = mixCMYK(colourArray);
         const hsl = cmykToHSL(...cmyk);
         // empty mixing pot
-        mixingPot.innerHTML = "";
+        mixingPotContent.innerHTML = "";
         // create new color element
         const colorElement = document.createElement('div');
         colorElement.style.backgroundColor = `hsl(${hsl[0]} ${hsl[1]}% ${hsl[2]}%)`;
-        mixingPot.appendChild(colorElement);
+        colorElement.style.width = "50px";
+        colorElement.style.height = "50px";
+        mixingPotContent.appendChild(colorElement);
         // move mixing pot to output area
         const outputArea = document.getElementById('the-other-side');
         outputArea.appendChild(mixingPot);

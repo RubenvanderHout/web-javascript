@@ -84,7 +84,7 @@ function generateGrid() {
                 // if class mixingpot take the first child
                 if (colorElement.classList.contains('mixingpot')) {
                     // @ts-ignore
-                    square.style.backgroundColor = colorElement.firstChild.style.backgroundColor;
+                    square.style.backgroundColor = colorElement.querySelector(".mixingpot-content").firstChild.style.backgroundColor;
                 }
                 else {
                     // @ts-ignore
