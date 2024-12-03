@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { generateRandomId, reactive, computed } from "../utils/utils.js";
 import { getWeatherModifier } from "../utils/weather.js";
-import { hslToCMYK, mixCMYK, cmykToHSL } from "../utils/colors.js";
+import { hslToCMYK, mixCMYK, cmykToHSL, cmykToRGB, hslToRGB } from "../utils/colors.js";
 
 
 export function MixingMachineComponent(){
@@ -57,7 +57,8 @@ export function MixingMachineComponent(){
 async function mix(mixingPot){
     // get highest mixingt time from all ingredients
     let mixingTime = 0;
-    const ingredients = mixingPot.querySelector(".mixingpot-content").children;
+    const mixingPotContent = mixingPot.querySelector(".mixingpot-content");
+    const ingredients = mixingPotContent.children;
     for(const ingredient of ingredients){
         const ingredientMixingTime = ingredient.getAttribute("mixingTime");
         if(ingredientMixingTime > mixingTime){
@@ -88,24 +89,28 @@ async function mix(mixingPot){
         //get hsl from each ingredient and convert to rgb
         for(const ingredient of ingredients){
             const color = ingredient.getAttribute("color");
-            const rgb = hslToCMYK(...color.match(/\d+/g).map(Number));
+            //split the hsl string into seperate values hsl(101, 74%, 88%) => [101, 74, 88]
+            const hsl = color.match(/\d+/g).map(Number);
+            const rgb = hslToRGB(hsl[0], hsl[1], hsl[2]);
             colourArray.push(rgb);
         }
 
         console.log("Mixing colors!", colourArray);
 
         const cmyk = mixCMYK(colourArray);
-        const hsl = cmykToHSL(...cmyk);
+        console.log("Mixed colors cmyk!", cmyk);
+        const hsl = cmykToHSL(cmyk[0], cmyk[1], cmyk[2], cmyk[3]);
         // empty mixing pot
-        mixingPot.innerHTML = "";
+        mixingPotContent.innerHTML = "";
         // create new color element
         const colorElement = document.createElement('div');
         colorElement.style.backgroundColor = `hsl(${hsl[0]} ${hsl[1]}% ${hsl[2]}%)`;
-        mixingPot.appendChild(colorElement);
+        colorElement.style.width = "50px";
+        colorElement.style.height = "50px";
+        mixingPotContent.appendChild(colorElement);
         // move mixing pot to output area
         const outputArea = document.getElementById('the-other-side');
         outputArea.appendChild(mixingPot);
-        console.log("Mixed colors!", hsl);
 
     }, mixingTime);
 }
