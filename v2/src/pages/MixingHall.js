@@ -1,7 +1,5 @@
-import { MixingPotComponent } from "../components/MixingPot.js";
-import { MixingMachineComponent } from "../components/MixingMachine.js";
 import { MixingMachineList } from "../components/mixingMachineList.js";
-import { createComponent } from "../utils/utils.js";
+import { computed, createComponent } from "../utils/utils.js";
 import { MixingPotListComponent } from "../components/MixingPotList.js";
 
 export function MixingHallPage() {
