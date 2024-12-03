@@ -16,8 +16,8 @@ export function getTriadicColors(baseColor) {
 }
 
 export function mixCMYK(rgbArray, index = 0, totals = [0, 0, 0, 0]) {
-    console.log(rgbArray);
     const cmykArray = rgbArray.map(([r, g, b]) => rgbToCMYK(r, g, b));
+    console.log(cmykArray)
     
     // Base case: If we've gone through all the CMYK values
     if (index === cmykArray.length) {
@@ -45,7 +45,7 @@ export function cmykToHSL(c, m, y, k) {
     return rgbToHSL(r, g, b);
 }
 
-function hslToRGB(h, s, l) {
+export function hslToRGB(h, s, l) {
     h /= 360;
     s /= 100;
     l /= 100;
@@ -107,7 +107,7 @@ function rgbToCMYK(r, g, b) {
     return [c, m, y, k];
 }
 
-function cmykToRGB(c, m, y, k) {
+export function cmykToRGB(c, m, y, k) {
     let r = 255 * (1 - c) * (1 - k);
     let g = 255 * (1 - m) * (1 - k);
     let b = 255 * (1 - y) * (1 - k);
