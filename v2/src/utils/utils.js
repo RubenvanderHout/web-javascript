@@ -62,9 +62,21 @@ export function ref(initialValue) {
 }
 
 export function computed(getterCallback) {
+    const listeners = new Set();
     const obj = { value: getterCallback() };
-    // Uses getterCallback closure and recomputes to update the value
-    const recompute = () => { obj.value = getterCallback(); };
-    obj.subscribe = (listenerCallback) => listenerCallback(recompute);
+
+    const recompute = () => {
+        const newValue = getterCallback();
+        if (obj.value !== newValue) { // Update only if value changes
+            obj.value = newValue;
+            listeners.forEach(listenerCallback => listenerCallback());
+        }
+    };
+
+    obj.subscribe = (listenerCallback) => {
+        listeners.add(listenerCallback);
+    };
+
+    obj.trigger = recompute; // Allow external triggering of recomputation
     return obj;
 }
