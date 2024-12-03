@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { generateRandomId, reactive, computed } from "../utils/utils.js";
 import { getWeatherModifier } from "../utils/weather.js";
-import { mixCMYK } from "../utils/colors.js";
+import { hslToCMYK, mixCMYK, cmykToHSL } from "../utils/colors.js";
 
 
 export function MixingMachineComponent(){
@@ -83,7 +83,18 @@ async function mix(mixingPot){
     // set timer
     setTimeout(() => {
         // mix colors
-        const cmyk = mixCMYK(ingredients.value);
+        let colourArray = [];
+
+        //get hsl from each ingredient and convert to rgb
+        for(const ingredient of ingredients){
+            const color = ingredient.getAttribute("color");
+            const rgb = hslToCMYK(...color.match(/\d+/g).map(Number));
+            colourArray.push(rgb);
+        }
+
+        console.log("Mixing colors!", colourArray);
+
+        const cmyk = mixCMYK(colourArray);
         const hsl = cmykToHSL(...cmyk);
         // empty mixing pot
         mixingPot.innerHTML = "";
