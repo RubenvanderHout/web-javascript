@@ -39,20 +39,10 @@ export function debounce(callback, delay) {
 
 export function reactive(object){
     const listeners = new Set();
-
-    function wrapReactive(value) {
-        // In order to make nested objects inside other objects reactive
-        // we need to recursively wrap them in reactive
-        if (value && typeof value === 'object') {
-            return reactive(value);
-        }
-        return value;
-    }
-
     const proxy = new Proxy(object, {
         get(target, key){
             const value = target[key];
-            return wrapReactive(value); // Ensure nested objects/arrays are reactive
+            return value;
         },
         set(target, key, value) {
             target[key] = value;

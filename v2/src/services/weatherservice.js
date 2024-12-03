@@ -1,10 +1,55 @@
+import { reactive } from "../utils/utils.js";
+
 const WeatherData = {
     WEATHER_API_URL : "https://api.open-meteo.com/v1/forecast",
     WEATHER_API_PART : "&current=temperature_2m,precipitation",
     GEOCODING_API_URL : "https://geocoding-api.open-meteo.com/v1/search"
 }
 
-export let currentWeatherInfo = null;
+export const currentWeatherInfo = reactive({});
+
+export function getInitialLocation(){
+    if(!navigator.geolocation){
+        console.log("Geolocation is not supported")
+    }
+
+    function setCurrentLocation(pos){
+        const longitude = pos.coords.longitude;
+        const latitude = pos.coords.latitude;
+
+        currentWeatherInfo.name = "Not found";
+        currentWeatherInfo.longitude = longitude;
+        currentWeatherInfo.latitude = latitude;
+
+        getForecast(longitude, latitude).then((result) => {
+            currentWeatherInfo.temperature = result.temperature_2m;
+            currentWeatherInfo.precipitation = result.precipitation;
+        });
+
+
+        currentWeatherInfo.temperature = "Not found"
+    };
+
+    navigator.geolocation.getCurrentPosition(setCurrentLocation);
+}
+
+export function setCurrentLocation(result) {
+
+    console.log(result)
+    const longitude = result.longitude;
+    const latitude = result.latitude;
+
+    currentWeatherInfo.name = result.name;
+    currentWeatherInfo.longitude = longitude
+    currentWeatherInfo.latitude = latitude
+
+
+    getForecast(longitude, latitude).then((result) => {
+        console.log(result)
+        currentWeatherInfo.temperature = result.temperature_2m;
+        currentWeatherInfo.precipitation = result.precipitation;
+    });
+}
 
 
 /**
@@ -12,8 +57,9 @@ export let currentWeatherInfo = null;
  * @param {number} latitude
  */
 export async function getForecast(longitude, latitude) {
+
     let url = WeatherData.WEATHER_API_URL;
-    url += `?latitude=${longitude}&longitude=${latitude}` + WeatherData.WEATHER_API_PART;
+    url += `?latitude=${latitude}&longitude=${longitude}` + WeatherData.WEATHER_API_PART;
 
     try {
         const response = await fetch(url)
