@@ -15,25 +15,20 @@ export function getTriadicColors(baseColor) {
     return [triadic1, triadic2];
 }
 
-export function mixCMYK(rgbArray, index = 0, totals = [0, 0, 0, 0]) {
+export function mixCMYK(rgbArray) {
     const cmykArray = rgbArray.map(([r, g, b]) => rgbToCMYK(r, g, b));
-    console.log(cmykArray)
-    
-    // Base case: If we've gone through all the CMYK values
-    if (index === cmykArray.length) {
-        const count = cmykArray.length;
-        return totals.map(total => total / count); // Average each component
-    }
+    let c = 0, m = 0, y = 0, k = 0;
 
-    const [c, m, y, k] = cmykArray[index];
-    totals[0] += c;
-    totals[1] += m;
-    totals[2] += y;
-    totals[3] += k;
+    cmykArray.forEach(([c1, m1, y1, k1]) => {
+        c = Math.min(c + c1, 1);
+        m = Math.min(m + m1, 1);
+        y = Math.min(y + y1, 1);
+        k = Math.min(k + k1, 1);
+    });
 
-    // Recursion: Add the current CMYK values to the totals and move to the next
-    return mixCMYK(cmykArray, index + 1, totals);
+    return [c, m, y, k];
 }
+
 
 export function hslToCMYK(h, s, l) {
     const [r, g, b] = hslToRGB(h, s, l);
@@ -59,9 +54,9 @@ export function hslToRGB(h, s, l) {
         let q = l < 0.5 ? l * (1 + s) : l + s - l * s; // determine how to calculate the saturation based on lightness
         let p = 2 * l - q;
 
-        r = hueToRGB(p, q, h + 1/3);
+        r = hueToRGB(p, q, h + 1 / 3);
         g = hueToRGB(p, q, h);
-        b = hueToRGB(p, q, h - 1/3);
+        b = hueToRGB(p, q, h - 1 / 3);
     }
 
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
@@ -91,37 +86,51 @@ function rgbToHSL(r, g, b) {
         h /= 6;
     }
 
+    console.log(`rgbToHSL: ${h}, ${s}, ${l}`);
+
     return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
 }
 
 function rgbToCMYK(r, g, b) {
+    // Normalize RGB values to the range [0, 1]
     let c = 1 - (r / 255);
     let m = 1 - (g / 255);
     let y = 1 - (b / 255);
-    let k = Math.min(c, m, y);
+    let k = Math.min(c, m, y); // Key (black) component
 
-    c = (c - k) / (1 - k);
-    m = (m - k) / (1 - k);
-    y = (y - k) / (1 - k);
+    // Handle edge case for pure black (K = 1)
+    if (k === 1) {
+        c = 0;
+        m = 0;
+        y = 0;
+    } else {
+        c = (c - k) / (1 - k);
+        m = (m - k) / (1 - k);
+        y = (y - k) / (1 - k);
+    }
 
+    console.log(`rgbToCMYK: ${c}, ${m}, ${y}, ${k}`);
     return [c, m, y, k];
 }
+
 
 export function cmykToRGB(c, m, y, k) {
     let r = 255 * (1 - c) * (1 - k);
     let g = 255 * (1 - m) * (1 - k);
     let b = 255 * (1 - y) * (1 - k);
 
+    console.log(`cmykToRGB: ${r}, ${g}, ${b}`);
+
     return [Math.round(r), Math.round(g), Math.round(b)];
 }
 
 
-function hueToRGB(s, l, h){
+function hueToRGB(s, l, h) {
     if (h < 0) h += 1;
     if (h > 1) h -= 1;
-    if (h < 1/6) return s + (l - s) * 6 * h;
-    if (h < 1/3) return l;
-    if (h < 1/2) return s + (l - s) * (2/3 - h) * 6;
+    if (h < 1 / 6) return s + (l - s) * 6 * h;
+    if (h < 1 / 3) return l;
+    if (h < 1 / 2) return s + (l - s) * (2 / 3 - h) * 6;
     return s;
 }
 
