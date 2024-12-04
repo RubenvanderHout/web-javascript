@@ -1,119 +1,125 @@
 /* CSS Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html, body {
-    margin: 0;
-    height: 100vh;
+html,
+body {
+  margin: 0;
+  height: 100vh;
 }
 
 html {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 body {
-    color: #444;
-    background-color: #EEE;
-    line-height: 1.6em;
-    padding: 0;
-    -webkit-font-smoothing: antialiased; /* Smooth fonts in WebKit browsers */
-    -moz-osx-font-smoothing: grayscale; /* Smooth fonts in Firefox */
+  color: #444;
+  background-color: #eee;
+  line-height: 1.6em;
+  padding: 0;
+  -webkit-font-smoothing: antialiased; /* Smooth fonts in WebKit browsers */
+  -moz-osx-font-smoothing: grayscale; /* Smooth fonts in Firefox */
 }
 
-
-
 /* Basic Elements */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
 }
 
 h1 {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 h2 {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 h3 {
-    font-size: 1.17em;
+  font-size: 1.17em;
 }
 
 p {
-    margin: 0 0 1em;
+  margin: 0 0 1em;
 }
 
-ul, ol {
-    list-style: none; /* Remove list styles */
+ul,
+ol {
+  list-style: none; /* Remove list styles */
 }
 
 a {
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit color from parent */
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Inherit color from parent */
 }
 
 img {
-    max-width: 100%; /* Responsive images */
-    height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Responsive images */
+  height: auto; /* Maintain aspect ratio */
 }
 
 /* Additional Defaults */
 button {
-    font-family: inherit; /* Use inherited font for buttons */
-    font-size: inherit; /* Use inherited font size */
-    cursor: pointer; /* Change cursor to pointer */
+  font-family: inherit; /* Use inherited font for buttons */
+  font-size: inherit; /* Use inherited font size */
+  cursor: pointer; /* Change cursor to pointer */
 }
 
-input, textarea {
-    font-family: inherit; /* Use inherited font for inputs and textareas */
-    font-size: inherit; /* Use inherited font size */
-    line-height: inherit; /* Use inherited line height */
+input,
+textarea {
+  font-family: inherit; /* Use inherited font for inputs and textareas */
+  font-size: inherit; /* Use inherited font size */
+  line-height: inherit; /* Use inherited line height */
 }
 
 /* Responsive Typography */
 @media (max-width: 768px) {
-    html {
-        font-size: 93.75%; /* ~15px */
-    }
+  html {
+    font-size: 93.75%; /* ~15px */
+  }
 }
 
 @media (max-width: 576px) {
-    html {
-        font-size: 87.5%; /* ~14px */
-    }
+  html {
+    font-size: 87.5%; /* ~14px */
+  }
 }
 
 .content {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    height: 92vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: 92vh;
 }
 
 .nav {
-    background: hsl(206 100% 83%);
-    height: 8vh;
+  background: hsl(206 100% 83%);
+  height: 8vh;
 }
 
 .main {
-    flex: 3;
+  flex: 3;
 }
 
 .sidebar {
-    flex: 1;
-    background: hsl(150deg 30% 60%);
+  flex: 1;
+  background: hsl(150deg 30% 60%);
 }
 
 .flex-container {
-    display: flex;
+  display: flex;
 }
 
-.centered{
-    margin: auto;
-    width: 50vw;
+.centered {
+  margin: auto;
+  width: 50vw;
 }
 
 .rectangle {
@@ -145,160 +151,169 @@ input, textarea {
   box-sizing: border-box;
 }
 
+.page-container>div, .shape, .mixingpot, .mixing-machine {
+  animation: show 600ms 100ms cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
+  opacity: 0;
+}
+
 .shape {
-    display: inline-block;
-    border: hsl(0, 0%, 100%) solid 1px;
-    cursor: grab;
+  display: inline-block;
+  border: hsl(0, 0%, 100%) solid 1px;
+  cursor: grab;
+  transform: rotateX(-90deg);
+  transform-origin: top center;
 }
 
 .horizontal-list {
-    display: flex;
-    list-style: none; /* removes the bullet points from the list */
+  display: flex;
+  list-style: none; /* removes the bullet points from the list */
 }
 
 .horizontal-list li {
-    margin-right: 20px; /* adds spacing between each list item */
+  margin-right: 20px; /* adds spacing between each list item */
 }
 
 .page-container {
-    height: 100%;
-    width: 100%;
-    background: hsl(0 80% 50% / 25%);
+  height: 100%;
+  width: 100%;
+  background: hsl(0 80% 50% / 25%);
 }
 
 .bucket {
-    border-top: 250px solid red;
-    border-left: 60px solid orange;
-    border-right: 60px solid blue;
-    border-bottom: 60px solid green;
-    background-color: red;
-    height: 500px;
-    width: 500px;
+  border-top: 250px solid red;
+  border-left: 60px solid orange;
+  border-right: 60px solid blue;
+  border-bottom: 60px solid green;
+  background-color: red;
+  height: 500px;
+  width: 500px;
 }
 
-.colorswatch{
-    height: 50px;
-    width: 50px;
-    border : 1px solid black;
+.colorswatch {
+  height: 50px;
+  width: 50px;
+  border: 1px solid black;
 }
-
 
 .triadic-square {
-    width: 50px;
-    height: 50px;
-    background-color: hsl(0 0% 50%);
-    border: 1px solid black;
+  width: 50px;
+  height: 50px;
+  background-color: hsl(0 0% 50%);
+  border: 1px solid black;
 }
 
 .mixing-machine {
-    height: 200px;
-    width: 200px;
-    background-color: #bdbdbd;
+  height: 200px;
+  width: 200px;
+  background-color: #bdbdbd;
 }
 
 .mixing-seperator {
-    display: flex;
-    flex-direction: row;
-    margin-top: 1rem;
-
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
 }
 
 .mixingpot-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
 }
 
 .mixingpot-container > button {
-    margin: 10px;
-    height: 35px;
-    min-width: 200px;
+  margin: 10px;
+  height: 35px;
+  min-width: 200px;
 }
 
 .mixingmachine-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
 }
 
 .mixingpot-list > div {
-    margin-top: 2rem;
-    margin-bottom: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
 .mixingmachine-list > div {
-    margin-top: 2rem;
-    margin-bottom: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 
-
-#triadic-2{
-    margin-top: 75px;
+#triadic-2 {
+  margin-top: 75px;
 }
-
 
 #triadic-3 {
-    margin-top: 75px;
+  margin-top: 75px;
 }
 
-.color-test-page{
-    display: grid;
-    grid-template-rows: auto auto auto;
-    justify-content: space-between;
+.color-test-page {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  justify-content: space-between;
 }
 
 .ingredient-info:popover-open {
-    right: 0;
-    display: flex;
-    position: absolute;
-    width: 35vw;
-    margin-left: 65vw
+  right: 0;
+  display: flex;
+  position: absolute;
+  width: 35vw;
+  margin-left: 65vw;
 }
-.ingredient-info >span {
-    margin-right: 10px;
+.ingredient-info > span {
+  margin-right: 10px;
 }
 #search-container {
-    max-width: 400px;
+  max-width: 400px;
 }
 
 #search-bar {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 #search-results {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 200px;
-    overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .result-item {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .result-item:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
-.mixing-machine-form{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
+.mixing-machine-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .mixing-machine-form > input {
-    margin: 10px;
-    min-width: 200px;
-    height: 35px;
+  margin: 10px;
+  min-width: 200px;
+  height: 35px;
+}
+
+@keyframes show {
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }

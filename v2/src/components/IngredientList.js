@@ -70,7 +70,6 @@ export function IngredientListComponent() {
         ingredientListElement.appendChild(m);
         ingredientListElement.appendChild(y);
         ingredientListElement.appendChild(k);
-
     
     }
 
