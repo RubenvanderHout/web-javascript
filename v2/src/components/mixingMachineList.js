@@ -7,8 +7,8 @@ export function MixingMachineList() {
 
     const html = `
         <form class="mixing-machine-form">
-            <input type="number" min="1" max="11" id="${mixingspeedId}" placeholder="mixing speed">
-            <input type="number" min="1000" max="5000" id="${mixingtimeId}" placeholder="mixing time in ms">
+            <input required type="number" min="1" max="11" id="${mixingspeedId}" placeholder="mixing speed">
+            <input required type="number" min="1000" max="5000" id="${mixingtimeId}" placeholder="mixing time in ms">
             <input type="submit" value="Add mixing machine">
         </form>
 

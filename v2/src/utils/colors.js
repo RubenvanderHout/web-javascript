@@ -1,14 +1,12 @@
 // explaination of the formulas in this file: https://en.wikipedia.org/wiki/HSL_and_HSV#From_HSL
 
 export function getTriadicColors(baseColor) {
-    // Extract the HSL components from the input string
     const [r, g, b] = baseColor.match(/\d+/g).map(Number);
+
     const hslColor = rgbToHSL(r, g, b).join(', ');
-    console.log(hslColor);
 
     const [h, s, l] = hslColor.match(/\d+/g).map(Number);
 
-    // Calculate the two triadic colors
     const triadic1 = `hsl(${(h + 120) % 360}, ${s}%, ${l}%)`;
     const triadic2 = `hsl(${(h + 240) % 360}, ${s}%, ${l}%)`;
 
@@ -16,6 +14,7 @@ export function getTriadicColors(baseColor) {
 }
 
 export function mixCMYK(rgbArray) {
+    
     const cmykArray = rgbArray.map(([r, g, b]) => rgbToCMYK(r, g, b));
     let c = 0, m = 0, y = 0, k = 0;
 
