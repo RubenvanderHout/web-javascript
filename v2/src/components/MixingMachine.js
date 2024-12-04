@@ -1,13 +1,13 @@
 // @ts-nocheck
-import { generateRandomId, reactive, computed } from "../utils/utils.js";
-import { getWeatherModifier } from "../utils/weather.js";
-import { hslToCMYK, mixCMYK, cmykToHSL, cmykToRGB, hslToRGB } from "../utils/colors.js";
+import { generateRandomId } from "../utils/utils.js";
+import { mixCMYK, cmykToHSL, hslToRGB } from "../utils/colors.js";
+import { mixingTaskRunner } from "../services/mixingservice.js";
 
 
 export function MixingMachineComponent(){
 
     const id = "mixingmachine-" + generateRandomId();
-    
+
     const html = `
         <div id="mixing-machine-${id}" class="mixing-machine">
         </div>
@@ -25,7 +25,7 @@ export function MixingMachineComponent(){
         mixingMachine.classList.remove('over');
     });
 
-   
+
     mixingMachine.addEventListener('drop', (event) => {
         event.preventDefault();
 
@@ -54,7 +54,7 @@ export function MixingMachineComponent(){
     return fragment;
 }
 
-async function mix(mixingPot){
+function mix(mixingPot){
     // get highest mixingt time from all ingredients
     let mixingTime = 0;
     const mixingPotContent = mixingPot.querySelector(".mixingpot-content");
@@ -66,28 +66,11 @@ async function mix(mixingPot){
         }
     }
 
-
-    //TODO: get weather modifier
-    // function getLocation() {
-    //     if (navigator.geolocation) {
-    //       const position = navigator.geolocation.getCurrentPosition();
-    //     } else {
-    //       x.innerHTML = "Geolocation is not supported by this browser.";
-    //     }
-    // }
-
-
-    // // apply weather modifiers from api
-    // const weatherModifier = await getWeatherModifier(position);
-    // mixingTime *= weatherModifier;
-
-    // set timer
-    setTimeout(() => {
-        // mix colors
+    function mixColors() {
         let colourArray = [];
 
         //get hsl from each ingredient and convert to rgb
-        for(const ingredient of ingredients){
+        for (const ingredient of ingredients) {
             const color = ingredient.getAttribute("color");
             //split the hsl string into seperate values hsl(101, 74%, 88%) => [101, 74, 88]
             const hsl = color.match(/\d+/g).map(Number);
@@ -111,6 +94,8 @@ async function mix(mixingPot){
         // move mixing pot to output area
         const outputArea = document.getElementById('the-other-side');
         outputArea.appendChild(mixingPot);
+    }
 
-    }, mixingTime);
+    // Makes sure when one machine runs only one machine is possible to run the task
+    mixingTaskRunner(mixColors, mixingTime);
 }

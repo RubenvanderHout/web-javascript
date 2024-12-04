@@ -85,3 +85,25 @@ export async function searchLocations(cityName) {
         console.log(`Could not return Location because: ${error}`)
     }
 }
+
+
+export function getWeatherMixingModifiers(currentWeatherInfo) {
+
+    function calculateMixingSpeedModifier(weather) {
+        let modifier = 1;
+        if (weather?.precipitation > 0) modifier *= 1.10; // Increase for precipitation
+        if (weather?.temperature < 10) modifier *= 1.15; // Increase for cold weather
+        return modifier;
+    };
+
+    function calculateOtherModifiers (weather) {
+        const modifiers = {};
+        if (weather?.temperature > 35) modifiers.maxmachines = 1; // Limit machines
+        return modifiers;
+    };
+
+    return {
+        mixingspeedmodifier: calculateMixingSpeedModifier(currentWeatherInfo),
+        ...calculateOtherModifiers(currentWeatherInfo),
+    };
+}

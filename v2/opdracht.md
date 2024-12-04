@@ -1,5 +1,5 @@
  Algemeen:
-De eindopdracht is het analyseren, ontwerpen en realiseren van een simulatie applicatie, gebruikmakend van Javascript. Je maakt geen gebruik van externe frameworks, packages of modules. Met andere woorden: je schrijft alles zelf. 
+De eindopdracht is het analyseren, ontwerpen en realiseren van een simulatie applicatie, gebruikmakend van Javascript. Je maakt geen gebruik van externe frameworks, packages of modules. Met andere woorden: je schrijft alles zelf.
 Je maakt de eindopdracht in duo's. Voor week 4 maak je een duo. Lukt dat niet, geef je docent dan even een seintje dan kijken we wat we kunnen doen.
 Inschrijven voor het assessment komt ter zijner tijd online en wordt gemeld via de announcements.
 Future Color:
@@ -21,23 +21,23 @@ Maak een applicatie die de volgende aspecten heeft:
 
 [x] Je kan meerdere mengmachines aanmaken met verschillende instellingen (mengsnelheid/mengtijd)
 
-[ ] Je kan een pot de mengmachine plaatsen door middel van drag en drop.
+[x] Je kan een pot de mengmachine plaatsen door middel van drag en drop.
 
-[ ] Potten die in de mengmachine worden geplaatst komen automatisch 'aan de andere kant' er weer uit na de hoogste mengtijd van een ingredient
+[x] Potten die in de mengmachine worden geplaatst komen automatisch 'aan de andere kant' er weer uit na de hoogste mengtijd van een ingredient
 
 [ ] Er is een animatie aanwezig (zelf te bepalen) - Laad balk
 
-[x] Er zijn twee Menghallen beschikbaar waar je machines kan plaatsen en afzonderlijk werken. Je kan wisselen tussen de hallen zonder dat de pagina opnieuw wordt geladen. 
+[x] Er zijn twee Menghallen beschikbaar waar je machines kan plaatsen en afzonderlijk werken. Je kan wisselen tussen de hallen zonder dat de pagina opnieuw wordt geladen.
 
 [x] In de menghallen kan je dus meerdere machines maken, maar de ingredienten niet. Deze zijn altijd zichtbaar
 
-[ ] Afhankelijk van het weer (via API aanroepen) zal de mengtijd hoger/lager zijn. Maak een oplossing dat je makkelijk de stad/locatie van het filiaal waar de verf wordt gemengd kan aanpassen. Hierdoor kan je makkelijk van weertype wisselen. 
+[x] Afhankelijk van het weer (via API aanroepen) zal de mengtijd hoger/lager zijn. Maak een oplossing dat je makkelijk de stad/locatie van het filiaal waar de verf wordt gemengd kan aanpassen. Hierdoor kan je makkelijk van weertype wisselen.
 
     Als het regent of sneeuwt 10% meer mengtijd.
     Als het boven de 35 graden mag er maximaal 1 mengmachine draaien.
     Onder de 10 graden 15% langer mengen.
 
-[x] Er is een kleurentest pagina aanwezig waarbij de gebruiker zelf een grid kan genereren van bijvoorbeeld 6x6 vierkantjes.
+[x] Er is een kleurentest pagina aanwezig waarbij de    gebruiker zelf een grid kan genereren van bijvoorbeeld 6x6 vierkantjes.
 
 [x] Deze vierkantjes kan je dan 'vullen' met de gemengde verf en zo verschillen zien tussen de gevulde vierkantjes.
 
