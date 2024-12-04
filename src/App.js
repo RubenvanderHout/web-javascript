@@ -1,8 +1,6 @@
 import { NavigationComponent } from "./components/Navigation.js";
 import { createComponent } from "./utils/utils.js";
 import { IngredientListComponent } from "./components/IngredientList.js";
-import { ColorListComponent } from "./components/ColorList.js";
-
 
 export function App() {
   const html = `
@@ -25,7 +23,6 @@ export function App() {
   // Use the createComponent function to render components
   createComponent(NavigationComponent, fragment.querySelector("nav"));
   createComponent(IngredientListComponent,fragment.querySelector("ingredient-list"));
-  createComponent(ColorListComponent, fragment.querySelector("color-list"));
 
   return fragment
 }
