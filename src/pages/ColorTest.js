@@ -1,7 +1,7 @@
 import { getTriadicColors } from '../utils/colors.js';
 
 export function ColorTestPage() {
-    
+
 
     const html = `
         <div class="color-test-page">
@@ -14,9 +14,9 @@ export function ColorTestPage() {
                 </form>
             </div>
             <div id="color_swatch">
-                
+
             </div>
-            
+
             <div class="centered">
                 <h2>Triadic Colors</h2>
                 <div class="flex-container">
@@ -43,9 +43,9 @@ export function ColorTestPage() {
 
 function generateGrid() {
     event.preventDefault();
-    //@ts-ignore
+    //
     const x = document.getElementById('grid-x').value;
-    //@ts-ignore
+    //
     const y = document.getElementById('grid-y').value;
 
     const parent = document.getElementById('color_swatch');
@@ -77,17 +77,17 @@ function generateGrid() {
             square.addEventListener('drop', (event) => {
                 event.preventDefault();
 
-                // @ts-ignore
+                //
                 const draggedElementId = event.dataTransfer.getData("text");
                 const colorElement = document.getElementById(draggedElementId);
 
                 // if class mixingpot take the first child
                 if (colorElement.classList.contains('mixingpot')) {
-                    // @ts-ignore
+                    //
                     square.style.backgroundColor = colorElement.querySelector(".mixingpot-content").firstChild.style.backgroundColor;
                 }
                 else {
-                    // @ts-ignore
+                    //
                     square.style.backgroundColor = colorElement.style.backgroundColor;
                 }
                 colorElement.remove();
@@ -96,16 +96,16 @@ function generateGrid() {
             })
         }
         parent.appendChild(row);
-        
+
     }
-    
+
 }
 
 function swatchClick() {
     const swatch = event.target;
     console.log('swatch clicked');
 
-    //@ts-ignore
+    //
     const baseColor = swatch.style.backgroundColor;
     console.log(baseColor);
 

@@ -4,7 +4,6 @@ import { getInitialLocation } from './services/weatherservice.js';
 import { createComponent } from './utils/utils.js';
 
 // Create a global object that stores routing and state
-// @ts-ignore
 window.application = {};
 
 

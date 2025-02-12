@@ -69,7 +69,7 @@ export function WeatherInfoComponent() {
     "input",
     debounce(async (event) => {
       event.preventDefault();
-      // @ts-ignore
+      //
       const cityName = event.target.value;
       console.log(cityName)
       if(!cityName){

@@ -33,9 +33,9 @@ export function MixingMachineList() {
     }
     let machine = MixingMachineComponent();
     let machineElement = machine.querySelector(".mixing-machine");
-    // @ts-ignore
+
     const mixingspeed = document.getElementById(mixingspeedId).value;
-    // @ts-ignore
+
     const mixingtime = document.getElementById(mixingtimeId).value;
     machineElement.setAttribute("mixingspeed",mixingspeed);
     machineElement.setAttribute("mixingtime",mixingtime);

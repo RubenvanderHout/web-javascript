@@ -33,7 +33,6 @@ export function MixingPotComponent() {
     mixingPotContent.addEventListener('drop', (event) => {
         event.preventDefault();
 
-        // @ts-ignore
         const draggedElementId = event.dataTransfer.getData("text/plain");
         const draggedElement = document.getElementById(draggedElementId);
 
@@ -51,13 +50,9 @@ export function MixingPotComponent() {
             return false;
         }
 
-        // @ts-ignore
         if (mixingPotContent.children.length > 0) {
-            // @ts-ignore
             const firstIngredient = mixingPotContent.children[0];
-            // @ts-ignore
             const firstIngredientMixingSpeed = firstIngredient.getAttribute('mixingspeed');
-            // @ts-ignore
             const draggedElementMixingSpeed = droppedElement.getAttribute('mixingspeed');
 
             if (firstIngredientMixingSpeed !== draggedElementMixingSpeed) {
@@ -70,16 +65,12 @@ export function MixingPotComponent() {
 
 
     mixingPotHandle.addEventListener('dragstart', (event) => {
-        // @ts-ignore
         mixingPot.style.setProperty('opacity', '0.4');
 
         const mixingPotId= mixingPot.getAttribute('id');
         console.log(mixingPotId);
-        // @ts-ignore
         event.dataTransfer.effectAllowed = 'copy';
-        // @ts-ignore
         event.dataTransfer.clearData();
-        // @ts-ignore
         event.dataTransfer.setData('text/plain', mixingPotId);
 
         return false;
@@ -88,7 +79,6 @@ export function MixingPotComponent() {
 
 
     mixingPotHandle.addEventListener('dragend', (event) => {
-        // @ts-ignore
         mixingPot.style.setProperty("opacity", "1");
         return false;
     })

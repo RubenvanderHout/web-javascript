@@ -33,7 +33,7 @@ export function MixingMachineComponent(){
             console.log("Can't mix more than one pot at a time");
             return false;
         }
-        // @ts-ignore
+
         const mixingPotId = event.dataTransfer.getData("text/plain");
         if(!/^mixingpot-/.test(mixingPotId)){
             return false;

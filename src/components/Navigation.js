@@ -24,7 +24,7 @@ export function NavigationComponent() {
     .join(" ");
   ul.innerHTML = navRoutes;
   ul.addEventListener("click", (event) => {
-    // @ts-ignore
+    //
     const path = event.target.getAttribute("data-path");
 
     if (path) {
